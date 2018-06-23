@@ -46,7 +46,7 @@ sharding:
 #mybatis
 mybatis-plus:
     mapper-locations: classpath:mapper/*.xml
-    typeAliasesPackage: com.wang.jmonkey.cloud.modules.*.entity #实体扫描，多个package用逗号或者分号分隔
+    typeAliasesPackage: com.wang.jmonkey.cloud.modules.*.*.entity #实体扫描，多个package用逗号或者分号分隔
     global-config:
         id-type: 3 #主键类型  0:"数据库ID自增", 1:"用户输入ID",2:"全局唯一ID (数字类型唯一ID)", 3:"全局唯一ID UUID";
         field-strategy: 2 #字段策略 0:"忽略判断",1:"非 NULL 判断"),2:"非空判断"

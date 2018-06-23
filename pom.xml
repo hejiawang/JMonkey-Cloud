@@ -40,6 +40,8 @@
     <mybatisplus-spring-boot-starter.version>1.0.5</mybatisplus-spring-boot-starter.version>
     <sharding-jdbc-core-spring-boot-starter.version>2.0.1</sharding-jdbc-core-spring-boot-starter.version>
     <velocity-engine-core.version>2.0</velocity-engine-core.version>
+    <mybatis-plus.version>2.1.9</mybatis-plus.version>
+    <fastjson.version>1.2.46</fastjson.version>
   </properties>
 
   <!--公共依赖-->
@@ -55,6 +57,12 @@
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
       <version>${lombok.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>fastjson</artifactId>
+      <version>${fastjson.version}</version>
     </dependency>
 
     <!--测试依赖-->

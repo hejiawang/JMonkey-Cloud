@@ -1,0 +1,6 @@
+/**
+ * @Description: upms 公用包
+ * @Auther: HeJiawang
+ * @Date: 2018/6/23
+ */
+package com.wang.jmonkey.cloud.modules.upms.common;
