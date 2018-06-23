@@ -1,0 +1,27 @@
+spring:
+    application:
+        name: JMonkey-Gateway
+    profiles:
+        active: dev
+
+server:
+    port: 8088
+
+zuul:
+    ignoredServices: '*'
+    host:
+        connect-timeout-millis: 30000
+        socket-timeout-millis: 30000
+#    routes:
+#        test:
+#            path: /itrial/test/**
+#            serviceId: iTrial-modules-test
+
+eureka:
+    instance:
+        prefer-ip-address: true
+        lease-renewal-interval-in-seconds: 5
+        lease-expiration-duration-in-seconds: 20
+    client:
+        serviceUrl:
+            defaultZone: http://${JMonkey.eureka.userName}:${JMonkey.eureka.password}@${JMonkey.eureka.host}:${JMonkey.eureka.port}/eureka

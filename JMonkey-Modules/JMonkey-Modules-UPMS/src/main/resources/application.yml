@@ -1,0 +1,65 @@
+spring:
+    application:
+        name: JMonkey-Modules-UMPS
+    profiles:
+        active: dev
+    datasource:
+        driver-class-name: com.mysql.jdbc.Driver
+        username: ${JMonkey.dataSource.userName}
+        password: 123456
+        url: jdbc:mysql://114.116.89.11:3306/hjw_test?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
+
+server:
+    port: 8801
+
+eureka:
+    instance:
+        prefer-ip-address: true
+        lease-renewal-interval-in-seconds: 5
+        lease-expiration-duration-in-seconds: 20
+    client:
+        serviceUrl:
+            defaultZone: http://${JMonkey.eureka.userName}:${JMonkey.eureka.password}@${JMonkey.eureka.host}:${JMonkey.eureka.port}/eureka
+
+# 分库分表支持
+sharding:
+    jdbc:
+        datasource:
+            names: ds
+            ds:
+                type: com.zaxxer.hikari.HikariDataSource
+                driver-class-name: com.mysql.jdbc.Driver
+                username: root
+                password: 123456
+                jdbc-url: jdbc:mysql://114.116.89.11:3306/hjw_test?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
+        config:
+            sharding:
+                tables:
+                    sys_log:
+                        actual-data-nodes: ds.sys_log_${0..1}
+                        table-strategy:
+                            inline:
+                                sharding-column: id
+                                algorithm-expression: sys_log_${id % 2}
+                        key-generator-column-name: id
+
+#mybatis
+mybatis-plus:
+    mapper-locations: classpath:mapper/*.xml
+    typeAliasesPackage: com.wang.jmonkey.cloud.modules.*.entity #实体扫描，多个package用逗号或者分号分隔
+    global-config:
+        id-type: 3 #主键类型  0:"数据库ID自增", 1:"用户输入ID",2:"全局唯一ID (数字类型唯一ID)", 3:"全局唯一ID UUID";
+        field-strategy: 2 #字段策略 0:"忽略判断",1:"非 NULL 判断"),2:"非空判断"
+        db-column-underline: true #驼峰下划线转换
+        refresh-mapper: true #刷新mapper 调试神器
+        #capital-mode: true #数据库大写下划线转换
+        #key-generator: com.baomidou.springboot.xxx #序列接口实现类配置
+        logic-delete-value: -1 #逻辑删除配置
+        logic-not-delete-value: 0
+    configuration:
+        map-underscore-to-camel-case: true
+        cache-enabled: false
+        call-setters-on-nulls: true
+
+logging:
+    config: classpath:logback.xml

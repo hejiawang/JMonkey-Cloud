@@ -1,0 +1,11 @@
+JMonkey:
+    eureka:
+        userName: JMonkey
+        password: 123456
+        host: localhost
+        port: 8100
+    dataSource:
+        userName: root
+        password: 123456
+        url: 114.116.89.11:3306/hjw_test
+

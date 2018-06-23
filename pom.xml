@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.wang.jmonkey.cloud</groupId>
+  <artifactId>JMonkey-Cloud</artifactId>
+  <version>${JMonkey-version}</version>
+  <packaging>pom</packaging>
+
+  <name>JMonkey-Cloud</name>
+  <description>project pom</description>
+
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>1.5.14.RELEASE</version>
+    <relativePath/>
+  </parent>
+
+  <modules>
+    <module>JMonkey-Eureka</module>
+    <module>JMonkey-Gateway</module>
+    <module>JMonkey-Common</module>
+    <module>JMonkey-Auth</module>
+    <module>JMonkey-Modules</module>
+  </modules>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
+    <java.version>1.8</java.version>
+
+    <JMonkey-version>1.0-BETA</JMonkey-version>
+    <spring-boot-version>1.5.14.RELEASE</spring-boot-version>
+    <spring-cloud.version>Edgware.SR3</spring-cloud.version>
+
+    <lombok.version>1.18.0</lombok.version>
+    <mybatisplus-spring-boot-starter.version>1.0.5</mybatisplus-spring-boot-starter.version>
+    <sharding-jdbc-core-spring-boot-starter.version>2.0.1</sharding-jdbc-core-spring-boot-starter.version>
+    <velocity-engine-core.version>2.0</velocity-engine-core.version>
+  </properties>
+
+  <!--公共依赖-->
+  <dependencies>
+    <!--注册中心-->
+    <dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-starter-eureka</artifactId>
+    </dependency>
+
+    <!--Lombok-->
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>${lombok.version}</version>
+    </dependency>
+
+    <!--测试依赖-->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+  </dependencies>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>io.spring.platform</groupId>
+        <artifactId>platform-bom</artifactId>
+        <version>Brussels-SR6</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-dependencies</artifactId>
+        <version>${spring-cloud.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <!-- 设定主仓库，按设定顺序进行查找。 -->
+  <repositories>
+    <repository>
+      <id>JMonkey-Cloud</id>
+      <name>JMonkey-Cloud Repository</name>
+      <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+    </repository>
+  </repositories>
+
+  <!-- 设定插件仓库 -->
+  <pluginRepositories>
+    <pluginRepository>
+      <id>JMonkey-Cloud</id>
+      <name>JMonkey-Cloud Repository</name>
+      <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+    </pluginRepository>
+  </pluginRepositories>
+
+  <build>
+    <finalName>${project.artifactId}</finalName>
+
+    <resources>
+      <resource>
+        <directory>src/main/java</directory>
+        <includes>
+          <include>**/*.xml</include>
+        </includes>
+        <filtering>false</filtering>
+      </resource>
+    </resources>
+
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <configuration>
+          <fork>true</fork>
+        </configuration>
+      </plugin>
+
+      <!-- Compiler 插件, 设定JDK版本 -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.5.1</version>
+        <configuration>
+          <source>${java.version}</source>
+          <target>${java.version}</target>
+          <encoding>${project.build.sourceEncoding}</encoding>
+          <showWarnings>true</showWarnings>
+          <compilerArguments>
+            <verbose />
+            <bootclasspath>${java.home}\lib\rt.jar;</bootclasspath>
+          </compilerArguments>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+  <!-- 开发者信息 -->
+  <developers>
+    <developer>
+      <id>JMonkey</id>
+      <name>HeJiawang</name>
+      <email>952327407@qq.com</email>
+      <roles>
+        <role>Project Creator</role>
+      </roles>
+      <timezone>+8</timezone>
+    </developer>
+  </developers>
+
+</project>
