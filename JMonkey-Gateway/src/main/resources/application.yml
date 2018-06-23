@@ -12,10 +12,13 @@ zuul:
     host:
         connect-timeout-millis: 30000
         socket-timeout-millis: 30000
-#    routes:
-#        test:
-#            path: /itrial/test/**
-#            serviceId: iTrial-modules-test
+    routes:
+        auth:
+            path: /jmonkey/auth/**
+            serviceId: JMonkey-Modules-Auth
+        upms:
+            paht: /jmonkey/upms/**
+            serviceId: JMonkey-Modules-UMPS
 
 eureka:
     instance:

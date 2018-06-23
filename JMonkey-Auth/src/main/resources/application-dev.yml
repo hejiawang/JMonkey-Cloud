@@ -1,0 +1,6 @@
+JMonkey:
+    eureka:
+        userName: JMonkey
+        password: 123456
+        host: localhost
+        port: 8100

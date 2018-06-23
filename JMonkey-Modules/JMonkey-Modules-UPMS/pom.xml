@@ -18,6 +18,11 @@
     </parent>
 
     <dependencies>
+        <dependency>
+            <groupId>com.wang.jmonkey.cloud</groupId>
+            <artifactId>JMonkey-Common</artifactId>
+            <version>${JMonkey-version}</version>
+        </dependency>
         <!--MySQL-->
         <dependency>
             <groupId>mysql</groupId>

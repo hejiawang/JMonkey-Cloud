@@ -3,11 +3,10 @@ package com.wang.jmonkey.cloud.common.model;
 import com.alibaba.fastjson.annotation.JSONField;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.baomidou.mybatisplus.activerecord.Model;
-import com.wang.jmonkey.cloud.common.enums.RecordStatusEnum;
+import com.wang.jmonkey.cloud.common.model.enums.RecordStatusEnum;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
-import java.io.Serializable;
 import java.util.Date;
 
 /**
