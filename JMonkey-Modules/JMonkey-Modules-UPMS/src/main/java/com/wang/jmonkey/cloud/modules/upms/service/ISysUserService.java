@@ -8,5 +8,5 @@ import com.wang.jmonkey.cloud.modules.upms.model.entity.SysUserEntity;
  * @Auther: HeJiawang
  * @Date: 2018/6/23
  */
-public interface IUserService  extends IService<SysUserEntity> {
+public interface ISysUserService extends IService<SysUserEntity> {
 }

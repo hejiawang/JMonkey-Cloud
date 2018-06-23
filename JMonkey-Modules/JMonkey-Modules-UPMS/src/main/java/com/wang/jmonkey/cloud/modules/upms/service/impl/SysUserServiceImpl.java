@@ -1,9 +1,9 @@
 package com.wang.jmonkey.cloud.modules.upms.service.impl;
 
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
-import com.wang.jmonkey.cloud.modules.upms.mapper.UserMapper;
+import com.wang.jmonkey.cloud.modules.upms.mapper.SysUserMapper;
 import com.wang.jmonkey.cloud.modules.upms.model.entity.SysUserEntity;
-import com.wang.jmonkey.cloud.modules.upms.service.IUserService;
+import com.wang.jmonkey.cloud.modules.upms.service.ISysUserService;
 import org.springframework.stereotype.Service;
 
 /**
@@ -12,6 +12,6 @@ import org.springframework.stereotype.Service;
  * @Date: 2018/6/23
  */
 @Service
-public class UserServiceImpl extends ServiceImpl<UserMapper, SysUserEntity> implements IUserService {
+public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUserEntity> implements ISysUserService {
 
 }

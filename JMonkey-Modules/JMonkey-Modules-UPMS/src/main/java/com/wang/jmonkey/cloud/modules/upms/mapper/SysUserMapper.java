@@ -8,6 +8,6 @@ import com.wang.jmonkey.cloud.modules.upms.model.entity.SysUserEntity;
  * @Auther: HeJiawang
  * @Date: 2018/6/23
  */
-public interface UserMapper extends BaseMapper<SysUserEntity> {
+public interface SysUserMapper extends BaseMapper<SysUserEntity> {
 
 }
