@@ -1,4 +1,4 @@
-package com.wang.jmonkey.cloud.modules.upms.common.enums;
+package com.wang.jmonkey.cloud.common.model.enums;
 
 import com.baomidou.mybatisplus.enums.IEnum;
 

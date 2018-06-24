@@ -1,7 +1,7 @@
 package com.wang.jmonkey.cloud.common.constant;
 
 /**
- * @Description:
+ * @Description: 授权类型
  * @Auther: HeJiawang
  * @Date: 2018/6/23
  */
@@ -19,4 +19,19 @@ public interface SecurityConstants {
      * 刷新token
      */
     String REFRESH_TOKEN = "refresh_token";
+
+    /**
+     * 基础角色
+     */
+    String BASE_ROLE = "ROLE_BASE";
+
+    /**
+     * jwt签名
+     */
+    String JWT_KEY = "JMONKEY_JWT_KEY";
+
+    /**
+     * 资源服务的ID
+     */
+    String RESOURCE_ID = "JMONKEY_RESOURCE_ID";
 }

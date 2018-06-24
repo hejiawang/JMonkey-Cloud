@@ -1,31 +1,27 @@
-package com.wang.jmonkey.cloud.modules.upms.model.entity;
+package com.wang.jmonkey.cloud.common.model.vo;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import com.alibaba.fastjson.serializer.SerializerFeature;
-import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.annotations.TableName;
-import com.baomidou.mybatisplus.enums.IdType;
-import com.wang.jmonkey.cloud.common.model.BaseEntity;
+import com.wang.jmonkey.cloud.common.model.BaseVo;
 import com.wang.jmonkey.cloud.common.model.enums.SexEnum;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
-import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * @Description: 用户信息
+ * @Description:
  * @Auther: HeJiawang
- * @Date: 2018/6/23
+ * @Date: 2018/6/24
  */
 @Data
 @Accessors(chain = true)
-@TableName("sys_user")
-public class SysUserEntity extends BaseEntity<SysUserEntity> {
+public class UserVo  extends BaseVo {
 
     /**
-     * 主键ID
+     * id
      */
-    @TableId(value = "id", type = IdType.UUID)
     private String id;
 
     /**
@@ -54,8 +50,6 @@ public class SysUserEntity extends BaseEntity<SysUserEntity> {
     @JSONField(serialzeFeatures= SerializerFeature.WriteEnumUsingToString)
     private SexEnum sex;
 
-    @Override
-    protected Serializable pkVal() {
-        return this.id;
-    }
+    private List<RoleVo> roleList = new ArrayList<>();
+
 }

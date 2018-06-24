@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.baomidou.mybatisplus.enums.IdType;
 import com.wang.jmonkey.cloud.common.model.BaseEntity;
-import com.wang.jmonkey.cloud.modules.upms.common.enums.MenuTypeEnum;
+import com.wang.jmonkey.cloud.common.model.enums.MenuTypeEnum;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
