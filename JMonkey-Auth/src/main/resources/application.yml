@@ -1,6 +1,6 @@
 spring:
     application:
-        name: JMonkey-Modules-Auth
+        name: JMonkey-Auth
     profiles:
         active: dev
     redis:
@@ -28,6 +28,7 @@ JMonkey:
         anon:
             - /signin
             - /signup
+            - /jmonkey/auth/**
     auth:
         clientId: JMonkey_client_id
         clientSecret: JMonkey_client_secret

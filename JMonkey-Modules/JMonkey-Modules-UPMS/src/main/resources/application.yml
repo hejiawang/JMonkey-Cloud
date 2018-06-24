@@ -1,6 +1,6 @@
 spring:
     application:
-        name: JMonkey-Modules-UMPS
+        name: JMonkey-Modules-UPMS
     profiles:
         active: dev
     datasource:

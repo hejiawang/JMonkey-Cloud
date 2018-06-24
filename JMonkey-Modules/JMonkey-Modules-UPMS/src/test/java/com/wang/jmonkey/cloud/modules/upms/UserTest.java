@@ -1,6 +1,6 @@
 package com.wang.jmonkey.cloud.modules.upms;
 
-import com.wang.jmonkey.cloud.modules.upms.common.enums.SexEnum;
+import com.wang.jmonkey.cloud.common.model.enums.SexEnum;
 import com.wang.jmonkey.cloud.modules.upms.model.entity.SysUserEntity;
 import com.wang.jmonkey.cloud.modules.upms.service.ISysUserService;
 import junit.framework.TestCase;
