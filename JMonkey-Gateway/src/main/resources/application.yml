@@ -32,3 +32,10 @@ eureka:
     client:
         serviceUrl:
             defaultZone: http://${JMonkey.eureka.userName}:${JMonkey.eureka.password}@${JMonkey.eureka.host}:${JMonkey.eureka.port}/eureka
+
+JMonkey:
+    urls:
+        anon:
+            - /signin
+            - /signup
+            - /jmonkey/auth/**

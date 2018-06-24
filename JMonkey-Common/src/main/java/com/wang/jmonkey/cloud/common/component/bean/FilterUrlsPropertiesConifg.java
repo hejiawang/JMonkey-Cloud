@@ -1,4 +1,4 @@
-package com.wang.jmonkey.cloud.auth.bean;
+package com.wang.jmonkey.cloud.common.component.bean;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.boot.context.properties.ConfigurationProperties;

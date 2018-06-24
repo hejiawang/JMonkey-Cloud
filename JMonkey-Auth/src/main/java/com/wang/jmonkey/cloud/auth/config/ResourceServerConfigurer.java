@@ -1,7 +1,6 @@
 package com.wang.jmonkey.cloud.auth.config;
 
-import com.wang.jmonkey.cloud.auth.bean.FilterUrlsPropertiesConifg;
-import com.wang.jmonkey.cloud.common.constant.CommonConstant;
+import com.wang.jmonkey.cloud.common.component.bean.FilterUrlsPropertiesConifg;
 import com.wang.jmonkey.cloud.common.constant.SecurityConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;

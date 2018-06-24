@@ -25,10 +25,17 @@ public class HttpResult<T>  {
         this.result = t;
     }
 
+    public HttpResult(Throwable e) {
+        this.code = 200;
+        this.isSuccess = false;
+        this.message = e.getMessage();
+    }
+
     public HttpResult<T> error (int code, String message) {
         this.code = code;
         this.isSuccess = false;
         this.message = message;
         return this;
     }
+
 }
