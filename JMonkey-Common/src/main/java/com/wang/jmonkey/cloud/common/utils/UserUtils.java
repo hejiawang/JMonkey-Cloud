@@ -39,7 +39,7 @@ public class UserUtils {
      * 根据用户请求中的token 获取用户名
      *
      * @param request Request
-     * @return “”、username
+     * @return "" or username
      */
     public static String getUserName(HttpServletRequest request) {
         String username = "";

@@ -35,14 +35,16 @@ eureka:
 
 security:
     validate:
-        code: false
+        code: true
+        preview: false
     sessions: stateless
     oauth2:
         resource:
             loadBalanced: true
-            user-info-uri: http://localhost:8088/jmonkey/auth/authentication/user
-            prefer-token-info: false
+            token-info-uri:http: http://localhost:8101/oauth/check-token
             service-id: JMonkey-Gateway
+            jwt:
+                key-uri: http://localhost:8101/oauth/token_key #解析jwt令牌所需要密钥的地址
         client:
             accessTokenUri: http://localhost:8088/jmonkey/auth/oauth/token
             userAuthorizationUri: http://localhost:8088/jmonkey/auth/oauth/authorize

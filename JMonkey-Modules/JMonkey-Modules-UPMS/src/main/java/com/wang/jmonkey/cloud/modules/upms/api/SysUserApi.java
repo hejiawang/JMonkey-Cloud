@@ -2,6 +2,7 @@ package com.wang.jmonkey.cloud.modules.upms.api;
 
 import com.wang.jmonkey.cloud.common.http.abs.BaseHttp;
 import com.wang.jmonkey.cloud.common.http.result.HttpResult;
+import com.wang.jmonkey.cloud.common.utils.UserUtils;
 import com.wang.jmonkey.cloud.modules.upms.model.entity.SysUserEntity;
 import com.wang.jmonkey.cloud.modules.upms.service.ISysUserService;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -61,6 +62,9 @@ public class SysUserApi extends BaseHttp {
      */
     @RequestMapping(value = "/find/{id}", method = RequestMethod.GET)
     public HttpResult<SysUserEntity> findById( @PathVariable Serializable id ){
+        String userName = UserUtils.getUserName(request);
+        System.out.println(userName);
+
         return new HttpResult<>(sysUserService.selectById(id));
     }
 }

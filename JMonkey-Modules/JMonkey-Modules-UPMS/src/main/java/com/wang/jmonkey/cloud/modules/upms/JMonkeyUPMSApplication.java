@@ -12,7 +12,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  */
 @SpringBootApplication
 @EnableDiscoveryClient
-@MapperScan(basePackages = {"com.wang.jmonkey.cloud.modules.*.mapper"})
+@MapperScan(basePackages = {"com.wang.jmonkey.cloud.modules.*.mapper", "com.wang.jmonkey.cloud.common"})
 public class JMonkeyUPMSApplication {
 
     public static void main(String[] args) {

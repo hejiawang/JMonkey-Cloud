@@ -26,7 +26,7 @@ public class HttpResult<T>  {
     }
 
     public HttpResult(Throwable e) {
-        this.code = 200;
+        this.code = 250;
         this.isSuccess = false;
         this.message = e.getMessage();
     }
