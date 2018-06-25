@@ -24,6 +24,10 @@ zuul:
             path: /jmonkey/upms/**
             serviceId: JMonkey-Modules-UPMS
 
+ribbon:
+    ReadTimeout: 30000
+    ConnectTimeout: 30000
+
 eureka:
     instance:
         prefer-ip-address: true
@@ -46,8 +50,8 @@ security:
             jwt:
                 key-uri: http://localhost:8101/oauth/token_key #解析jwt令牌所需要密钥的地址
         client:
-            accessTokenUri: http://localhost:8088/jmonkey/auth/oauth/token
-            userAuthorizationUri: http://localhost:8088/jmonkey/auth/oauth/authorize
+            accessTokenUri: http://localhost:8101/oauth/token
+            userAuthorizationUri: http://localhost:8101/auth/oauth/authorize
             clientId: JMonkey_client_id
             clientSecret: JMonkey_client_secret
 JMonkey:
