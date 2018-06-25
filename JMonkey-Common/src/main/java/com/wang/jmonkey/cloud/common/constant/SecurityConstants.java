@@ -34,4 +34,19 @@ public interface SecurityConstants {
      * 资源服务的ID
      */
     String RESOURCE_ID = "JMONKEY_RESOURCE_ID";
+
+    /**
+     * token-uservo
+     */
+    String TOKEN_USER_DETAIL = "token-user-detail";
+
+    /**
+     * 项目的license
+     */
+    String JMONKEY_LICENSE = "made by hejiawang";
+
+    /**
+     * 前缀
+     */
+    String JMONKEY_PREFIX = "jmonkey_";
 }

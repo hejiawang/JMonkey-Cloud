@@ -33,6 +33,21 @@ eureka:
         serviceUrl:
             defaultZone: http://${JMonkey.eureka.userName}:${JMonkey.eureka.password}@${JMonkey.eureka.host}:${JMonkey.eureka.port}/eureka
 
+security:
+    validate:
+        code: false
+    sessions: stateless
+    oauth2:
+        resource:
+            loadBalanced: true
+            user-info-uri: http://localhost:8088/jmonkey/auth/authentication/user
+            prefer-token-info: false
+            service-id: JMonkey-Gateway
+        client:
+            accessTokenUri: http://localhost:8088/jmonkey/auth/oauth/token
+            userAuthorizationUri: http://localhost:8088/jmonkey/auth/oauth/authorize
+            clientId: JMonkey_client_id
+            clientSecret: JMonkey_client_secret
 JMonkey:
     urls:
         anon:

@@ -19,8 +19,6 @@ import java.util.List;
 @Service("permissionService")
 public class PermissionServiceImpl implements PermissionService {
 
-    private AntPathMatcher antPathMatcher = new AntPathMatcher();
-
     @Override
     public boolean hasPermission(HttpServletRequest request, Authentication authentication) {
         Object principal = authentication.getPrincipal();
@@ -32,10 +30,15 @@ public class PermissionServiceImpl implements PermissionService {
                 return hasPermission;
             }
 
+
             grantedAuthorityList.forEach( authority -> {
-                System.out.printf(authority.getAuthority());
+                System.out.println(authority.getAuthority());
             } );
 
+            System.out.println(request.getRequestURI());
+            System.out.println(request.getMethod());
+
+            hasPermission = true;
         }
 
         return hasPermission;

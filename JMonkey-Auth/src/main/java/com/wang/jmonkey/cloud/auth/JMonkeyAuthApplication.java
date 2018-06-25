@@ -14,7 +14,6 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
  */
 @SpringBootApplication
 @EnableDiscoveryClient
-@EnableResourceServer
 @EnableFeignClients
 @ComponentScan(basePackages = {"com.wang.jmonkey.cloud.auth", "com.wang.jmonkey.cloud.common"})
 public class JMonkeyAuthApplication {

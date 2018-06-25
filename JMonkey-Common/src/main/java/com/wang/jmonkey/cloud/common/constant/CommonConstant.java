@@ -17,4 +17,14 @@ public interface CommonConstant {
      */
     String CONTENT_TYPE = "application/json; charset=utf-8";
 
+    /**
+     * token请求头名称
+     */
+    String REQ_HEADER = "Authorization";
+
+    /**
+     * token分割符
+     */
+    String TOKEN_SPLIT = "Bearer ";
+
 }

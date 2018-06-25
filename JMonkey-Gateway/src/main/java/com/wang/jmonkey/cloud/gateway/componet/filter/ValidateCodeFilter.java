@@ -14,7 +14,7 @@ import java.io.IOException;
  * @Auther: HeJiawang
  * @Date: 2018/6/24
  */
-@Component("validateCodeFilter")
+//@Component("validateCodeFilter")
 public class ValidateCodeFilter extends OncePerRequestFilter {
 
     @Override

@@ -1,6 +1,6 @@
 package com.wang.jmonkey.cloud.gateway.componet.config;
 
-import com.wang.jmonkey.cloud.common.component.bean.FilterUrlsPropertiesConifg;
+import com.wang.jmonkey.cloud.common.component.bean.FilterUrlsPropertiesConfig;
 import com.wang.jmonkey.cloud.gateway.componet.filter.ValidateCodeFilter;
 import com.wang.jmonkey.cloud.gateway.componet.handler.JMonkeyAccessDeniedHandler;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,16 +32,16 @@ public class ResourceServerConfigurer extends ResourceServerConfigurerAdapter {
     @Autowired
     private JMonkeyAccessDeniedHandler accessDeniedHandler;
 
-    @Autowired
-    private ValidateCodeFilter validateCodeFilter;
+    //@Autowired
+    //private ValidateCodeFilter validateCodeFilter;
 
     @Autowired
-    private FilterUrlsPropertiesConifg filterUrlsPropertiesConifg;
+    private FilterUrlsPropertiesConfig filterUrlsPropertiesConifg;
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        http.addFilterBefore(validateCodeFilter, UsernamePasswordAuthenticationFilter.class);
-//        http.headers().frameOptions().disable();    //允许使用iframe 嵌套，避免swagger-ui 不被加载的问题
+        //http.addFilterBefore(validateCodeFilter, UsernamePasswordAuthenticationFilter.class);
+        http.headers().frameOptions().disable();    //允许使用iframe 嵌套，避免swagger-ui 不被加载的问题
 
         ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry registry = http.authorizeRequests();
         for (String url : filterUrlsPropertiesConifg.getAnon()) {
@@ -52,6 +52,7 @@ public class ResourceServerConfigurer extends ResourceServerConfigurerAdapter {
 
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) {
+        //resources.resourceId(SecurityConstants.RESOURCE_ID).stateless(true);
         resources.expressionHandler(expressionHandler);
         resources.accessDeniedHandler(accessDeniedHandler);
     }

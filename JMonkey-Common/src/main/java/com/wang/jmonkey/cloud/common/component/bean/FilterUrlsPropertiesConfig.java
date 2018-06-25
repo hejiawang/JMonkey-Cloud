@@ -14,7 +14,7 @@ import java.util.List;
 @Configuration
 @ConditionalOnExpression("!'${JMonkey.urls}'.isEmpty()")
 @ConfigurationProperties(prefix = "JMonkey.urls")
-public class FilterUrlsPropertiesConifg {
+public class FilterUrlsPropertiesConfig {
     private List<String> anon = new ArrayList<>();
 
     public List<String> getAnon() {

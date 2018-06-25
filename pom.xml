@@ -42,6 +42,11 @@
     <velocity-engine-core.version>2.0</velocity-engine-core.version>
     <mybatis-plus.version>2.1.9</mybatis-plus.version>
     <fastjson.version>1.2.46</fastjson.version>
+    <jjwt.version>0.9.0</jjwt.version>
+    <hutool.version>3.3.2</hutool.version>
+    <commons-io.version>2.6</commons-io.version>
+    <jasypt.version>1.18</jasypt.version>
+    <ttl.version>2.2.0</ttl.version>
   </properties>
 
   <!--公共依赖-->
