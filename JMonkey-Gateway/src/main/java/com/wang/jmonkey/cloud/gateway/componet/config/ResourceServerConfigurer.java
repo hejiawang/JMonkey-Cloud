@@ -32,21 +32,16 @@ public class ResourceServerConfigurer extends ResourceServerConfigurerAdapter {
     @Autowired
     private JMonkeyAccessDeniedHandler accessDeniedHandler;
 
-    //@Autowired
-    //private ValidateCodeFilter validateCodeFilter;
-
     @Autowired
     private FilterUrlsPropertiesConfig filterUrlsPropertiesConifg;
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        //http.addFilterBefore(validateCodeFilter, UsernamePasswordAuthenticationFilter.class);
         http.headers().frameOptions().disable();    //允许使用iframe 嵌套，避免swagger-ui 不被加载的问题
 
         ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry registry = http.authorizeRequests();
-        for (String url : filterUrlsPropertiesConifg.getAnon()) {
-            registry.antMatchers(url).permitAll();
-        }
+        filterUrlsPropertiesConifg.getAnon().forEach( url -> registry.antMatchers(url).permitAll() );
+
         registry.anyRequest().access("@permissionService.hasPermission(request,authentication)");
     }
 

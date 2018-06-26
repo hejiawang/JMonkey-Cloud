@@ -4,9 +4,9 @@ spring:
     profiles:
         active: dev
     redis:
-        host: 114.116.89.11
-        port: 6379
-        database: 15
+        host: ${JMonkey.redis.host}
+        port: ${JMonkey.redis.port}
+        database: ${JMonkey.redis.database}
 
 server:
     port: 8088
@@ -45,13 +45,13 @@ security:
     oauth2:
         resource:
             loadBalanced: true
-            token-info-uri:http: http://localhost:8101/oauth/check-token
+            token-info-uri:http: ${JMonkey.tokenUrl}/oauth/check-token
             service-id: JMonkey-Gateway
             jwt:
-                key-uri: http://localhost:8101/oauth/token_key #解析jwt令牌所需要密钥的地址
+                key-uri: ${JMonkey.tokenUrl}/oauth/token_key #解析jwt令牌所需要密钥的地址
         client:
-            accessTokenUri: http://localhost:8101/oauth/token
-            userAuthorizationUri: http://localhost:8101/auth/oauth/authorize
+            accessTokenUri: ${JMonkey.tokenUrl}/oauth/token
+            userAuthorizationUri: ${JMonkey.tokenUrl}/auth/oauth/authorize
             clientId: JMonkey_client_id
             clientSecret: JMonkey_client_secret
 JMonkey:
@@ -60,3 +60,4 @@ JMonkey:
             - /signin
             - /signup
             - /jmonkey/auth/**
+            - /jmonkey/upms/code/**
