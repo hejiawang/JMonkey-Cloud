@@ -123,6 +123,7 @@
         <plugin>
           <groupId>org.springframework.boot</groupId>
           <artifactId>spring-boot-maven-plugin</artifactId>
+          <version>${spring-boot-version}</version>
           <executions>
             <execution>
               <goals>
@@ -134,18 +135,11 @@
 
         <!-- Compiler 插件, 设定JDK版本 -->
         <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.5.1</version>
           <configuration>
             <source>${java.version}</source>
             <target>${java.version}</target>
             <encoding>${project.build.sourceEncoding}</encoding>
-            <showWarnings>true</showWarnings>
-            <compilerArguments>
-              <verbose />
-              <bootclasspath>${java.home}\lib\rt.jar;</bootclasspath>
-            </compilerArguments>
           </configuration>
         </plugin>
       </plugins>
