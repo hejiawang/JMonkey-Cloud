@@ -5,7 +5,7 @@
 
     <groupId>com.wang.jmonkey.cloud</groupId>
     <artifactId>JMonkey-Modules</artifactId>
-    <version>${JMonkey-version}</version>
+    <version>1.0-BETA</version>
     <packaging>pom</packaging>
 
     <name>JMonkey-Modules</name>

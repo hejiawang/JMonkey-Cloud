@@ -5,7 +5,7 @@
 
     <groupId>com.wang.jmonkey.cloud</groupId>
     <artifactId>JMonkey-Gateway</artifactId>
-    <version>${JMonkey-version}</version>
+    <version>1.0-BETA</version>
     <packaging>jar</packaging>
 
     <name>JMonkey-Gateway</name>

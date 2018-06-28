@@ -61,3 +61,4 @@ JMonkey:
             - /signup
             - /jmonkey/auth/**
             - /jmonkey/upms/code/**
+            - /jmonkey/upms/**
