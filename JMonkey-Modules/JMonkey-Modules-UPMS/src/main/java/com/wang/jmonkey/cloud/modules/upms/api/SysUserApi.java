@@ -1,13 +1,13 @@
 package com.wang.jmonkey.cloud.modules.upms.api;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.plugins.Page;
 import com.wang.jmonkey.cloud.common.http.abs.BaseHttp;
+import com.wang.jmonkey.cloud.common.http.result.HttpPageResult;
 import com.wang.jmonkey.cloud.common.http.result.HttpResult;
 import com.wang.jmonkey.cloud.modules.upms.model.entity.SysUserEntity;
 import com.wang.jmonkey.cloud.modules.upms.service.ISysUserService;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.io.Serializable;
@@ -25,12 +25,25 @@ public class SysUserApi extends BaseHttp {
     private ISysUserService sysUserService;
 
     /**
+     * 用户信息列表
+     * @param page
+     * @param userEntity
+     * @return
+     */
+    @GetMapping(value = "/list")
+    public HttpPageResult<SysUserEntity> list(Page<SysUserEntity> page, SysUserEntity userEntity) {
+        EntityWrapper<SysUserEntity> userWrapper = new EntityWrapper<>();
+        userWrapper.setEntity(userEntity);
+        return new HttpPageResult<>( sysUserService.selectPage( page, userWrapper ) );
+    }
+
+    /**
      * 保存用户信息
      * @param userEntity 用户信息
      * @return
      */
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public HttpResult<Boolean> save(SysUserEntity userEntity){
+    @PostMapping(value = "/save")
+    public HttpResult<Boolean> save( @RequestBody SysUserEntity userEntity){
         return new HttpResult<>(sysUserService.insert(userEntity));
     }
 
@@ -39,8 +52,8 @@ public class SysUserApi extends BaseHttp {
      * @param userEntity 用户信息
      * @return
      */
-    @RequestMapping(value = "/modify", method = RequestMethod.PUT)
-    public HttpResult<Boolean> modify( SysUserEntity userEntity ){
+    @PutMapping(value = "/modify")
+    public HttpResult<Boolean> modify( @RequestBody SysUserEntity userEntity ){
         return new HttpResult<>(sysUserService.updateById(userEntity));
     }
 
@@ -49,7 +62,7 @@ public class SysUserApi extends BaseHttp {
      * @param id 用户ID
      * @return
      */
-    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
+    @DeleteMapping(value = "/delete/{id}")
     public HttpResult<Boolean> delete( @PathVariable Serializable id ){
         return new HttpResult<>(sysUserService.deleteById(id));
     }
@@ -59,7 +72,7 @@ public class SysUserApi extends BaseHttp {
      * @param id 用户ID
      * @return
      */
-    @RequestMapping(value = "/find/{id}", method = RequestMethod.GET)
+    @GetMapping(value = "/find/{id}")
     public HttpResult<SysUserEntity> findById( @PathVariable Serializable id ){
         return new HttpResult<>(sysUserService.selectById(id));
     }

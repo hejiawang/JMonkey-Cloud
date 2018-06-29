@@ -27,7 +27,7 @@ public class SysMenuApi extends BaseHttp {
      * @return
      */
     @PostMapping(value = "/save")
-    public HttpResult<Boolean> save(SysMenuEntity menuEntity){
+    public HttpResult<Boolean> save( @RequestBody SysMenuEntity menuEntity ){
         return new HttpResult<>( sysMenuService.insert(menuEntity) );
     }
 
@@ -37,7 +37,7 @@ public class SysMenuApi extends BaseHttp {
      * @return
      */
     @PutMapping(value = "/modify")
-    public HttpResult<Boolean> modify( SysMenuEntity menuEntity ){
+    public HttpResult<Boolean> modify( @RequestBody SysMenuEntity menuEntity ){
         return new HttpResult<>( sysMenuService.updateById(menuEntity) );
     }
 

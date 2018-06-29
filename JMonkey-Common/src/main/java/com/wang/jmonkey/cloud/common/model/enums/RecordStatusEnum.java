@@ -9,9 +9,9 @@ import com.baomidou.mybatisplus.enums.IEnum;
  */
 public enum RecordStatusEnum implements IEnum {
 
-    Used("used", "启用"),
-    Disable("disable", "禁用"),
-    Delete("delete", "删除");
+    Used("Used", "启用"),
+    Disable("Disable", "禁用"),
+    Delete("Delete", "删除");
 
     private String value;
     private String desc;

@@ -27,7 +27,7 @@ public class SysRoleApi extends BaseHttp {
      * @return
      */
     @PostMapping(value = "/save")
-    public HttpResult<Boolean> save(SysRoleEntity roleEntity){
+    public HttpResult<Boolean> save( @RequestBody SysRoleEntity roleEntity ){
         return new HttpResult<>(sysRoleService.insert(roleEntity));
     }
 
@@ -37,7 +37,7 @@ public class SysRoleApi extends BaseHttp {
      * @return
      */
     @PutMapping(value = "/modify")
-    public HttpResult<Boolean> modify(SysRoleEntity roleEntity){
+    public HttpResult<Boolean> modify( @RequestBody SysRoleEntity roleEntity ){
         return new HttpResult<>(sysRoleService.updateById(roleEntity));
     }
 

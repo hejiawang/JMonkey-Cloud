@@ -33,7 +33,7 @@ public class ControllerAop {
     @Autowired
     private CacheManager cacheManager;
 
-    @Pointcut("execution(public com.wang.jmonkey.cloud.common.http.result.HttpResult *(..))")
+    @Pointcut("execution(public com.wang.jmonkey.cloud.common.http.result.* *(..))")
     public void pointCutR() { }
 
     /**

@@ -9,9 +9,9 @@ import com.baomidou.mybatisplus.enums.IEnum;
  */
 public enum  SexEnum implements IEnum {
 
-    Man("man", "男"),
-    Woman("woman", "女"),
-    Other("other", "其他");
+    Man("Man", "男"),
+    Woman("Woman", "女"),
+    Other("Other", "其他");
 
     private String value;
     private String desc;

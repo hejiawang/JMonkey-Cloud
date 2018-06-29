@@ -9,8 +9,8 @@ import com.baomidou.mybatisplus.enums.IEnum;
  */
 public enum MenuTypeEnum implements IEnum {
 
-    Menu("menu", "男"),
-    Button("button", "其他");
+    Menu("Menu", "菜单"),
+    Button("Button", "按钮");
 
     private String value;
     private String desc;
