@@ -3,6 +3,7 @@ package com.wang.jmonkey.cloud.common.model;
 import com.alibaba.fastjson.annotation.JSONField;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.annotations.TableLogic;
 import com.wang.jmonkey.cloud.common.model.enums.RecordStatusEnum;
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -46,6 +47,7 @@ public abstract class BaseEntity<T extends BaseEntity> extends Model<T> {
     /**
      * 记录状态
      */
+    @TableLogic
     @JSONField(serialzeFeatures= SerializerFeature.WriteEnumUsingToString)
-    protected RecordStatusEnum deleteFlag = RecordStatusEnum.Used;
+    protected RecordStatusEnum deleteFlag ;//= RecordStatusEnum.Used;
 }

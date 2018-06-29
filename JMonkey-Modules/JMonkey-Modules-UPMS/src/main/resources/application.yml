@@ -58,8 +58,9 @@ mybatis-plus:
         refresh-mapper: true #刷新mapper 调试神器
         #capital-mode: true #数据库大写下划线转换
         #key-generator: com.baomidou.springboot.xxx #序列接口实现类配置
-        logic-delete-value: -1 #逻辑删除配置
-        logic-not-delete-value: 0
+        logic-delete-value: concat('','Delete','')  #逻辑删除配置
+        logic-not-delete-value: concat('','Used','')
+        sql-injector: com.baomidou.mybatisplus.mapper.LogicSqlInjector #自定义SQL注入器
     configuration:
         map-underscore-to-camel-case: true
         cache-enabled: false

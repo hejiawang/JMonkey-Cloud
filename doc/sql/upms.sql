@@ -11,7 +11,7 @@ CREATE TABLE `sys_user` (
   `update_date` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
 	`update_by` varchar(64) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '修改人',
 	`remark` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '备注',
-  `delete_flag` varchar(10) COLLATE utf8mb4_bin DEFAULT 'used' COMMENT 'used启用 disable禁用 delete删除',
+  `delete_flag` varchar(10) COLLATE utf8mb4_bin DEFAULT 'Used' COMMENT 'used启用 disable禁用 delete删除',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin ROW_FORMAT=DYNAMIC COMMENT='用户表';
 
@@ -25,7 +25,7 @@ CREATE TABLE `sys_role` (
   `update_date` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
 	`update_by` varchar(64) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '修改人',
 	`remark` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '备注',
-  `delete_flag` varchar(10) COLLATE utf8mb4_bin DEFAULT 'used' COMMENT 'used启用 disable禁用 delete删除',
+  `delete_flag` varchar(10) COLLATE utf8mb4_bin DEFAULT 'Used' COMMENT 'used启用 disable禁用 delete删除',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin ROW_FORMAT=DYNAMIC;
 
@@ -47,7 +47,7 @@ CREATE TABLE `sys_menu` (
   `update_date` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
 	`update_by` varchar(64) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '修改人',
 	`remark` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '备注',
-  `delete_flag` varchar(10) COLLATE utf8mb4_bin DEFAULT 'used' COMMENT 'used启用 disable禁用 delete删除',
+  `delete_flag` varchar(10) COLLATE utf8mb4_bin DEFAULT 'Used' COMMENT 'used启用 disable禁用 delete删除',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='菜单权限表';
 
@@ -60,7 +60,7 @@ CREATE TABLE `sys_user_role` (
   `update_date` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
 	`update_by` varchar(64) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '修改人',
 	`remark` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '备注',
-  `delete_flag` varchar(10) COLLATE utf8mb4_bin DEFAULT 'used' COMMENT 'used启用 disable禁用 delete删除',
+  `delete_flag` varchar(10) COLLATE utf8mb4_bin DEFAULT 'Used' COMMENT 'used启用 disable禁用 delete删除',
   PRIMARY KEY (`user_id`,`role_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='用户角色表';
 
@@ -73,7 +73,7 @@ CREATE TABLE `sys_role_menu` (
   `update_date` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
 	`update_by` varchar(64) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '修改人',
 	`remark` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '备注',
-  `delete_flag` varchar(10) COLLATE utf8mb4_bin DEFAULT 'used' COMMENT 'used启用 disable禁用 delete删除',
+  `delete_flag` varchar(10) COLLATE utf8mb4_bin DEFAULT 'Used' COMMENT 'used启用 disable禁用 delete删除',
   PRIMARY KEY (`role_id`,`menu_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='角色菜单表';
 
