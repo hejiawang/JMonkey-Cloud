@@ -1,6 +1,8 @@
 package com.wang.jmonkey.cloud.modules.upms.api;
 
+import com.baomidou.mybatisplus.plugins.Page;
 import com.wang.jmonkey.cloud.common.http.abs.BaseHttp;
+import com.wang.jmonkey.cloud.common.http.result.HttpPageResult;
 import com.wang.jmonkey.cloud.common.http.result.HttpResult;
 import com.wang.jmonkey.cloud.modules.upms.model.entity.SysRoleEntity;
 import com.wang.jmonkey.cloud.modules.upms.service.ISysRoleService;
@@ -20,6 +22,17 @@ public class SysRoleApi extends BaseHttp {
 
     @Resource
     private ISysRoleService sysRoleService;
+
+    /**
+     * 分页查询角色信息
+     * @param page page
+     * @param roleEntity 角色信息
+     * @return
+     */
+    @GetMapping(value = "/list")
+    public HttpPageResult<SysRoleEntity> list(Page<SysRoleEntity> page, SysRoleEntity roleEntity) {
+        return new HttpPageResult<>( sysRoleService.selectPage( page, roleEntity ) );
+    }
 
     /**
      * 保存角色信息

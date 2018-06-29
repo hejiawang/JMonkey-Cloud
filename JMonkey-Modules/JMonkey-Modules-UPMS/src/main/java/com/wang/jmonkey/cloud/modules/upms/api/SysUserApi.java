@@ -32,10 +32,7 @@ public class SysUserApi extends BaseHttp {
      */
     @GetMapping(value = "/list")
     public HttpPageResult<SysUserEntity> list(Page<SysUserEntity> page, SysUserEntity userEntity) {
-        EntityWrapper<SysUserEntity> userWrapper = new EntityWrapper<>();
-        userWrapper.setEntity(userEntity);
-        userWrapper.orderBy( "create_date", false );
-        return new HttpPageResult<>( sysUserService.selectPage( page, userWrapper ) );
+        return new HttpPageResult<>( sysUserService.selectPage( page, userEntity ) );
     }
 
     /**

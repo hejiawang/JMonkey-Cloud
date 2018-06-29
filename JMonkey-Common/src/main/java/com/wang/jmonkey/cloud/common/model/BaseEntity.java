@@ -49,5 +49,5 @@ public abstract class BaseEntity<T extends BaseEntity> extends Model<T> {
      */
     @TableLogic
     @JSONField(serialzeFeatures= SerializerFeature.WriteEnumUsingToString)
-    protected RecordStatusEnum deleteFlag ;//= RecordStatusEnum.Used;
+    protected RecordStatusEnum deleteFlag;
 }
