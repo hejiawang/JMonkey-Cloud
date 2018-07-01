@@ -28,6 +28,6 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRoleEntity
         wrapper.setEntity(roleEntity);
         wrapper.orderBy( "create_date", false );
 
-        return this.selectPage(page, roleEntity);
+        return this.selectPage(page, wrapper);
     }
 }

@@ -1,5 +1,6 @@
 package com.wang.jmonkey.cloud.modules.upms;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.wang.jmonkey.cloud.common.model.enums.SexEnum;
 import com.wang.jmonkey.cloud.modules.upms.model.entity.SysUserEntity;
 import com.wang.jmonkey.cloud.modules.upms.service.ISysUserService;
@@ -27,6 +28,12 @@ public class UserTest extends TestCase {
         SysUserEntity userEntity = new SysUserEntity().setUsername("userTest").setPassword("123456")
                 .setPhone("13333333333").setSalt("salt").setSex(SexEnum.Man);
         userEntity.insert();
+    }
+
+    @Test
+    public void checkUserName(){
+        Boolean isHave = userService.checkUserName( new SysUserEntity().setUsername("test1") );
+        System.out.printf( isHave.toString() );
     }
 
 }

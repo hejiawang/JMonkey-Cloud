@@ -74,4 +74,14 @@ public class SysUserApi extends BaseHttp {
     public HttpResult<SysUserEntity> findById( @PathVariable Serializable id ){
         return new HttpResult<>(sysUserService.selectById(id));
     }
+
+    /**
+     * 校验用户名是否存在
+     * @param userEntity 用户信息
+     * @return
+     */
+    @PostMapping(value = "/checkUserName")
+    public HttpResult<Boolean> checkUserName( @RequestBody SysUserEntity userEntity ){
+        return new HttpResult<>(sysUserService.checkUserName(userEntity));
+    }
 }
