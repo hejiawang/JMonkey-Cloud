@@ -1,5 +1,6 @@
 package com.wang.jmonkey.cloud.gateway.service.impl;
 
+import com.wang.jmonkey.cloud.common.model.enums.MenuMethodEnum;
 import com.wang.jmonkey.cloud.common.model.vo.MenuVo;
 import com.wang.jmonkey.cloud.gateway.service.PermissionService;
 import org.apache.commons.lang.StringUtils;
@@ -42,7 +43,7 @@ public class PermissionServiceImpl implements PermissionService {
                 if (!StringUtils.equals(authority.getAuthority(), "ROLE_ANONYMOUS")) {
                     MenuVo menuVo = new MenuVo();
 
-                    menuVo.setMethod("GET").setUrl("/jmonkey/upms/user/find/**");
+                    menuVo.setMethod(MenuMethodEnum.Get).setUrl("/jmonkey/upms/user/find/**");
 
                     urls.add(menuVo);
                 }
@@ -53,7 +54,7 @@ public class PermissionServiceImpl implements PermissionService {
 
             for( MenuVo menuVo : urls ){
                 if (StringUtils.isNotEmpty(menuVo.getUrl()) && antPathMatcher.match(menuVo.getUrl(), request.getRequestURI())
-                        && request.getMethod().equalsIgnoreCase(menuVo.getMethod())) {
+                        && request.getMethod().equalsIgnoreCase(menuVo.getMethod().getValue())) {
                     hasPermission = true;
                     break;
                 }

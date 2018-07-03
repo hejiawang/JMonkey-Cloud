@@ -2,12 +2,14 @@ package com.wang.jmonkey.cloud.modules.upms.api;
 
 import com.wang.jmonkey.cloud.common.http.abs.BaseHttp;
 import com.wang.jmonkey.cloud.common.http.result.HttpResult;
+import com.wang.jmonkey.cloud.modules.upms.model.dto.MenuTreeDto;
 import com.wang.jmonkey.cloud.modules.upms.model.entity.SysMenuEntity;
 import com.wang.jmonkey.cloud.modules.upms.service.ISysMenuService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @Description: 菜单管理api
@@ -20,6 +22,15 @@ public class SysMenuApi extends BaseHttp {
 
     @Resource
     private ISysMenuService sysMenuService;
+
+    /**
+     * 获取树形菜单数据
+     * @return
+     */
+    @GetMapping(value="/treeList")
+    public HttpResult<List<MenuTreeDto>> treeList(){
+        return new HttpResult<>(sysMenuService.treeList());
+    }
 
     /**
      * 保存菜单
