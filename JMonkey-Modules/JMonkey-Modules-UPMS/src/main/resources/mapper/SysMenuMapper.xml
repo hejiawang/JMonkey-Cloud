@@ -23,4 +23,16 @@
         <result column="delete_flag" property="deleteFlag" />
     </resultMap>
 
+    <resultMap id="DtoResultMap" type="com.wang.jmonkey.cloud.modules.upms.model.dto.MenuDto" extends="BaseResultMap">
+        <result column="parent_name" property="parentName" />
+    </resultMap>
+
+    <select id="selectDtoById" resultMap="DtoResultMap">
+        SELECT
+            menu.*, menu_p.`name` AS parent_name
+        FROM sys_menu menu
+        LEFT JOIN sys_menu menu_p ON menu.parent_id = menu_p.id AND menu_p.delete_flag = 'Used'
+        WHERE menu.delete_flag = 'Used' AND menu.id = #{id}
+    </select>
+
 </mapper>

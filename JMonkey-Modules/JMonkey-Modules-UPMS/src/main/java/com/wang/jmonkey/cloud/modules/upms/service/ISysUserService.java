@@ -4,8 +4,6 @@ import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.IService;
 import com.wang.jmonkey.cloud.modules.upms.model.entity.SysUserEntity;
 
-import java.io.Serializable;
-
 /**
  * @Description: 用户信息service
  * @Auther: HeJiawang

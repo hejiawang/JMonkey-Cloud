@@ -2,6 +2,7 @@ package com.wang.jmonkey.cloud.modules.upms.api;
 
 import com.wang.jmonkey.cloud.common.http.abs.BaseHttp;
 import com.wang.jmonkey.cloud.common.http.result.HttpResult;
+import com.wang.jmonkey.cloud.modules.upms.model.dto.MenuDto;
 import com.wang.jmonkey.cloud.modules.upms.model.dto.MenuTreeDto;
 import com.wang.jmonkey.cloud.modules.upms.model.entity.SysMenuEntity;
 import com.wang.jmonkey.cloud.modules.upms.service.ISysMenuService;
@@ -68,7 +69,7 @@ public class SysMenuApi extends BaseHttp {
      * @return
      */
     @GetMapping(value = "/find/{id}")
-    public HttpResult<SysMenuEntity> findById(@PathVariable Serializable id ){
-        return new HttpResult<>(sysMenuService.selectById(id));
+    public HttpResult<MenuDto> findById(@PathVariable Serializable id ){
+        return new HttpResult<>(sysMenuService.selectDtoById(id));
     }
 }

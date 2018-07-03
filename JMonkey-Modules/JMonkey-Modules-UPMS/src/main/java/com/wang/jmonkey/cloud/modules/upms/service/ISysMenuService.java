@@ -1,9 +1,11 @@
 package com.wang.jmonkey.cloud.modules.upms.service;
 
 import com.baomidou.mybatisplus.service.IService;
+import com.wang.jmonkey.cloud.modules.upms.model.dto.MenuDto;
 import com.wang.jmonkey.cloud.modules.upms.model.dto.MenuTreeDto;
 import com.wang.jmonkey.cloud.modules.upms.model.entity.SysMenuEntity;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -18,4 +20,11 @@ public interface ISysMenuService extends IService<SysMenuEntity> {
      * @return
      */
     List<MenuTreeDto> treeList();
+
+    /**
+     * 获取菜单信息
+     * @param id 菜单ID
+     * @return 菜单dto
+     */
+    MenuDto selectDtoById(Serializable id);
 }

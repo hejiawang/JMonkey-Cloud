@@ -8,6 +8,7 @@ import com.wang.jmonkey.cloud.modules.upms.mapper.SysUserMapper;
 import com.wang.jmonkey.cloud.modules.upms.model.entity.SysUserEntity;
 import com.wang.jmonkey.cloud.modules.upms.service.ISysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -23,6 +24,19 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUserEntity
 
     @Autowired
     private SysUserMapper userMapper;
+
+    /**
+     * 新增用户
+     * @param userEntity 用户信息
+     * @return 是否成功
+     */
+    @Override
+    public boolean insert(SysUserEntity userEntity) {
+        String password = new BCryptPasswordEncoder().encode(userEntity.getPassword());
+        userEntity.setPassword(password);
+
+        return super.insert(userEntity);
+    }
 
     /**
      * 分页查询用户列表数据
