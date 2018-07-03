@@ -10,4 +10,17 @@ import com.wang.jmonkey.cloud.modules.upms.model.entity.SysRoleEntity;
  */
 public interface SysRoleMapper extends BaseMapper<SysRoleEntity> {
 
+    /**
+     * 校验角色code是否存在
+     * @param roleEntity 角色信息
+     * @return
+     */
+    Integer checkCode(SysRoleEntity roleEntity);
+
+    /**
+     * 校验角色名称是否存在
+     * @param roleEntity 角色信息
+     * @return
+     */
+    Integer checkName(SysRoleEntity roleEntity);
 }

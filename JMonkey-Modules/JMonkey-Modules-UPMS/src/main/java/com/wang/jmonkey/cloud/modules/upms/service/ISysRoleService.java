@@ -19,4 +19,17 @@ public interface ISysRoleService extends IService<SysRoleEntity> {
      */
     Page<SysRoleEntity> selectPage(Page<SysRoleEntity> page, SysRoleEntity roleEntity );
 
+    /**
+     * 校验角色code是否存在
+     * @param roleEntity 角色信息
+     * @return
+     */
+    Boolean checkCode(SysRoleEntity roleEntity);
+
+    /**
+     * 校验角色名称是否存在
+     * @param roleEntity 角色信息
+     * @return
+     */
+    Boolean checkName(SysRoleEntity roleEntity);
 }

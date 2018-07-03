@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.wang.jmonkey.cloud.modules.upms.mapper.SysRoleMapper;
 import com.wang.jmonkey.cloud.modules.upms.model.entity.SysRoleEntity;
 import com.wang.jmonkey.cloud.modules.upms.service.ISysRoleService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,6 +16,9 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRoleEntity> implements ISysRoleService {
+
+    @Autowired
+    private SysRoleMapper roleMapper;
 
     /**
      * 分页查询角色信息列表
@@ -29,5 +33,25 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRoleEntity
         wrapper.orderBy( "create_date", false );
 
         return this.selectPage(page, wrapper);
+    }
+
+    /**
+     * 校验角色code是否存在
+     * @param roleEntity 角色信息
+     * @return
+     */
+    @Override
+    public Boolean checkCode(SysRoleEntity roleEntity) {
+        return roleMapper.checkCode(roleEntity) > 0;
+    }
+
+    /**
+     * 校验角色名称是否存在
+     * @param roleEntity 角色信息
+     * @return
+     */
+    @Override
+    public Boolean checkName(SysRoleEntity roleEntity) {
+        return roleMapper.checkName(roleEntity) > 0;
     }
 }

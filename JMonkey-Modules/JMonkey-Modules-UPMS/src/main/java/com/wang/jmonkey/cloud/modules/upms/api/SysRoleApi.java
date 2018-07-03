@@ -73,4 +73,24 @@ public class SysRoleApi extends BaseHttp {
     public HttpResult<SysRoleEntity> findById(@PathVariable Serializable id ){
         return new HttpResult<>(sysRoleService.selectById(id));
     }
+
+    /**
+     * 校验角色code是否存在
+     * @param roleEntity 角色信息
+     * @return
+     */
+    @PostMapping(value = "/checkCode")
+    public HttpResult<Boolean> checkCode( @RequestBody SysRoleEntity roleEntity ){
+        return new HttpResult<>(sysRoleService.checkCode(roleEntity));
+    }
+
+    /**
+     * 校验角色名称是否存在
+     * @param roleEntity 角色信息
+     * @return
+     */
+    @PostMapping(value = "/checkName")
+    public HttpResult<Boolean> checkName( @RequestBody SysRoleEntity roleEntity ){
+        return new HttpResult<>(sysRoleService.checkName(roleEntity));
+    }
 }
