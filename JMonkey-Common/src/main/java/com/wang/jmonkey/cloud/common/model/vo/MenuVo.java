@@ -3,6 +3,7 @@ package com.wang.jmonkey.cloud.common.model.vo;
 import com.alibaba.fastjson.annotation.JSONField;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.wang.jmonkey.cloud.common.model.BaseVo;
+import com.wang.jmonkey.cloud.common.model.enums.MenuMethodEnum;
 import com.wang.jmonkey.cloud.common.model.enums.MenuTypeEnum;
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -44,7 +45,8 @@ public class MenuVo extends BaseVo {
     /**
      * 请求方法
      */
-    private String method;
+    @JSONField(serialzeFeatures= SerializerFeature.WriteEnumUsingToString)
+    private MenuMethodEnum method;
 
     /**
      * 父菜单ID

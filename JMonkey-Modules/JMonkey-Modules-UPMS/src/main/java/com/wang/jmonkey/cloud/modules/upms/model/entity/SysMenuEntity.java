@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.baomidou.mybatisplus.enums.IdType;
 import com.wang.jmonkey.cloud.common.model.BaseEntity;
+import com.wang.jmonkey.cloud.common.model.enums.MenuMethodEnum;
 import com.wang.jmonkey.cloud.common.model.enums.MenuTypeEnum;
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -51,7 +52,8 @@ public class SysMenuEntity extends BaseEntity<SysMenuEntity> {
     /**
      * 请求方法
      */
-    private String method;
+    @JSONField(serialzeFeatures= SerializerFeature.WriteEnumUsingToString)
+    private MenuMethodEnum method;
 
     /**
      * 父菜单ID
