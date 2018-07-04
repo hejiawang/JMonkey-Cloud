@@ -15,4 +15,12 @@
         <result column="delete_flag" property="deleteFlag" />
     </resultMap>
 
+    <delete id="deleteAll">
+        DELETE FROM sys_role_menu WHERE role_id = #{roleId}
+    </delete>
+
+    <select id="findMenuByRole" resultType="java.lang.String">
+        SELECT menu_id FROM sys_role_menu WHERE role_id = #{roleId}
+    </select>
+
 </mapper>
