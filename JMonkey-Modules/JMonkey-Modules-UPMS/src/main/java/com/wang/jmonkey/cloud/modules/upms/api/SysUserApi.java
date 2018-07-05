@@ -1,13 +1,11 @@
 package com.wang.jmonkey.cloud.modules.upms.api;
 
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.wang.jmonkey.cloud.common.http.abs.BaseHttp;
 import com.wang.jmonkey.cloud.common.http.result.HttpPageResult;
 import com.wang.jmonkey.cloud.common.http.result.HttpResult;
 import com.wang.jmonkey.cloud.modules.upms.model.entity.SysUserEntity;
 import com.wang.jmonkey.cloud.modules.upms.service.ISysUserService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -84,5 +82,15 @@ public class SysUserApi extends BaseHttp {
     @PostMapping(value = "/checkUserName")
     public HttpResult<Boolean> checkUserName( @RequestBody SysUserEntity userEntity ){
         return new HttpResult<>(sysUserService.checkUserName(userEntity));
+    }
+
+    /**
+     * 根据用户名称获取用户信息
+     * @param username 用户名称
+     * @return
+     */
+    @GetMapping(value = "/findByUsername")
+    public HttpResult<SysUserEntity> findByUsername( String username ){
+        return new HttpResult<>( sysUserService.findByUsername(username) );
     }
 }

@@ -25,4 +25,11 @@ public interface ISysUserService extends IService<SysUserEntity> {
      * @return true or false
      */
     Boolean checkUserName(SysUserEntity userEntity);
+
+    /**
+     * 根据用户名称获取用户信息
+     * @param username 用户名称
+     * @return
+     */
+    SysUserEntity findByUsername(String username);
 }

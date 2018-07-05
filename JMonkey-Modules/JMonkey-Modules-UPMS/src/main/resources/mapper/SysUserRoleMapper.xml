@@ -15,4 +15,24 @@
         <result column="delete_flag" property="deleteFlag" />
     </resultMap>
 
+    <select id="findRoleIdByUserId" resultType="java.lang.String">
+        SELECT role_id
+        FROM sys_user_role
+        WHERE user_id = #{userId} AND delete_flag = 'Used'
+    </select>
+
+    <select id="findUserIdByRoleId" resultType="java.lang.String">
+        SELECT user_id
+        FROM sys_user_role
+        WHERE role_id = #{roleId} AND delete_flag = 'Used'
+    </select>
+
+    <delete id="deleteAllByUserId">
+        DELETE FROM sys_user_role WHERE user_id = #{userId}
+    </delete>
+
+    <delete id="deleteAllByRoleId">
+        DELETE FROM sys_user_role WHERE role_id = #{roleId}
+    </delete>
+
 </mapper>

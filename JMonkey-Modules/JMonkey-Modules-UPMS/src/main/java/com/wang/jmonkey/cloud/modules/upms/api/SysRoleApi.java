@@ -1,5 +1,6 @@
 package com.wang.jmonkey.cloud.modules.upms.api;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.wang.jmonkey.cloud.common.http.abs.BaseHttp;
 import com.wang.jmonkey.cloud.common.http.result.HttpPageResult;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @Description: 角色管理api
@@ -32,6 +34,15 @@ public class SysRoleApi extends BaseHttp {
     @GetMapping(value = "/list")
     public HttpPageResult<SysRoleEntity> list(Page<SysRoleEntity> page, SysRoleEntity roleEntity) {
         return new HttpPageResult<>( sysRoleService.selectPage( page, roleEntity ) );
+    }
+
+    /**
+     * 获取所有角色信息
+     * @return
+     */
+    @GetMapping(value = "/listAll")
+    public HttpResult<List<SysRoleEntity>> listAll(){
+        return new HttpResult<>( sysRoleService.selectList( new EntityWrapper<>( new SysRoleEntity() ) ) );
     }
 
     /**

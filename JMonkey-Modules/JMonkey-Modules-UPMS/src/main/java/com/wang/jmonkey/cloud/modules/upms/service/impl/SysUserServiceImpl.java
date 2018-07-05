@@ -63,4 +63,15 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUserEntity
         return userMapper.checkUserName(userEntity) > 0;
     }
 
+    /**
+     * 根据用户名称获取用户信息
+     * @param username 用户名称
+     * @return
+     */
+    @Override
+    public SysUserEntity findByUsername(String username) {
+        EntityWrapper wrapper = new EntityWrapper( new SysUserEntity().setUsername(username) );
+        return this.selectOne(wrapper);
+    }
+
 }
