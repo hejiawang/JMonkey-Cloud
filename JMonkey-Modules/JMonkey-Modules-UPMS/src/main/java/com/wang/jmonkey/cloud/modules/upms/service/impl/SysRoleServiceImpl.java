@@ -1,5 +1,6 @@
 package com.wang.jmonkey.cloud.modules.upms.service.impl;
 
+import com.baomidou.mybatisplus.enums.SqlLike;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
@@ -29,7 +30,9 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRoleEntity
     @Override
     public Page<SysRoleEntity> selectPage(Page<SysRoleEntity> page, SysRoleEntity roleEntity) {
         EntityWrapper<SysRoleEntity> wrapper = new EntityWrapper<>();
-        wrapper.setEntity(roleEntity);
+        wrapper.setEntity(new SysRoleEntity());
+        wrapper.like("name", roleEntity.getName(), SqlLike.DEFAULT);
+        wrapper.like("code", roleEntity.getCode(), SqlLike.DEFAULT);
         wrapper.orderBy( "create_date", false );
 
         return this.selectPage(page, wrapper);

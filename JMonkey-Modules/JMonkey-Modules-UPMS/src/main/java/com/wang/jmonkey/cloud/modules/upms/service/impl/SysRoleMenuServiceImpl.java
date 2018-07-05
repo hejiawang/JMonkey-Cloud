@@ -6,7 +6,9 @@ import com.wang.jmonkey.cloud.modules.upms.model.entity.SysRoleMenuEntity;
 import com.wang.jmonkey.cloud.modules.upms.service.ISysRoleMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -39,8 +41,8 @@ public class SysRoleMenuServiceImpl extends ServiceImpl<SysRoleMenuMapper, SysRo
     @Override
     public Boolean modifyAuth(String roleId, List<String> menuIds) {
         roleMenuMapper.deleteAll(roleId);
-        menuIds.forEach( menuId -> this.insert( new SysRoleMenuEntity().setRoleId(roleId).setMenuId(menuId) ) );
-
+        if( !CollectionUtils.isEmpty(menuIds) )
+            menuIds.forEach( menuId -> this.insert( new SysRoleMenuEntity().setRoleId(roleId).setMenuId(menuId) ) );
         return true;
     }
 }

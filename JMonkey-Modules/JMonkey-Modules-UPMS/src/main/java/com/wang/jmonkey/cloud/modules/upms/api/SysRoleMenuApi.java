@@ -36,14 +36,8 @@ public class SysRoleMenuApi extends BaseHttp {
      * @param menuIds 菜单id list
      * @return
      */
-    @PutMapping(value="/modifyAuth")
-    public HttpResult<Boolean> modifyAuth(@RequestBody String menuIds[] ){
-        //return new HttpResult<>( roleMenuService.modifyAuth(roleId, menuIds) );
-
-
-        //@RequestParam(value = "menuIds[]", required=false )
-        //System.out.println(roleId);
-        System.out.println(menuIds);
-        return new HttpResult<>( false );
+    @PostMapping(value="/modifyAuth")
+    public HttpResult<Boolean> modifyAuth(String roleId, @RequestParam(value = "menuIds[]", required=false )List<String> menuIds ){
+        return new HttpResult<>( roleMenuService.modifyAuth(roleId, menuIds) );
     }
 }

@@ -68,3 +68,12 @@ mybatis-plus:
 
 logging:
     config: classpath:logback.xml
+    level:
+      com:
+        wang:
+          jmonkey:
+            cloud:
+              modules:
+                upms:
+                  mapper: debug
+
