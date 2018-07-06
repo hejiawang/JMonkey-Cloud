@@ -1,6 +1,7 @@
 package com.wang.jmonkey.cloud.modules.upms.mapper;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
+import com.wang.jmonkey.cloud.modules.upms.model.entity.SysRoleEntity;
 import com.wang.jmonkey.cloud.modules.upms.model.entity.SysUserRoleEntity;
 import org.apache.ibatis.annotations.Param;
 
@@ -38,4 +39,11 @@ public interface SysUserRoleMapper extends BaseMapper<SysUserRoleEntity> {
      * @param roleId 角色ID
      */
     void deleteAllByRoleId( @Param("roleId")String roleId );
+
+    /**
+     * 获取用户的角色
+     * @param userId 用户ID
+     * @return 角色list
+     */
+    List<SysRoleEntity> findRoleByUserId( @Param("userId")String userId);
 }

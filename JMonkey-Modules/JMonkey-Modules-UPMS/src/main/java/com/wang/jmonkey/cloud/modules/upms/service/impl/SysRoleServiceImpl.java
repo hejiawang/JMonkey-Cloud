@@ -5,10 +5,17 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.wang.jmonkey.cloud.modules.upms.mapper.SysRoleMapper;
+import com.wang.jmonkey.cloud.modules.upms.mapper.SysRoleMenuMapper;
+import com.wang.jmonkey.cloud.modules.upms.mapper.SysUserRoleMapper;
 import com.wang.jmonkey.cloud.modules.upms.model.entity.SysRoleEntity;
+import com.wang.jmonkey.cloud.modules.upms.service.ISysRoleMenuService;
 import com.wang.jmonkey.cloud.modules.upms.service.ISysRoleService;
+import com.wang.jmonkey.cloud.modules.upms.service.ISysUserRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.io.Serializable;
 
 /**
  * @Description: 角色信息service实现
@@ -20,6 +27,12 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRoleEntity
 
     @Autowired
     private SysRoleMapper roleMapper;
+
+    @Resource
+    private ISysUserRoleService userRoleService;
+
+    @Autowired
+    private ISysRoleMenuService roleMenuService;
 
     /**
      * 分页查询角色信息列表
@@ -36,6 +49,13 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRoleEntity
         wrapper.orderBy( "create_date", false );
 
         return this.selectPage(page, wrapper);
+    }
+
+    @Override
+    public boolean deleteById(Serializable id) {
+        userRoleService.deleteAllByRoleId(String.valueOf(id));
+        roleMenuService.deleteAllByRoleId(String.valueOf(id));
+        return super.deleteById(id);
     }
 
     /**

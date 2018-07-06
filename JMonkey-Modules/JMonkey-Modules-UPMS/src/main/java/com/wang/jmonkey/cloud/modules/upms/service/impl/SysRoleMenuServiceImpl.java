@@ -33,6 +33,15 @@ public class SysRoleMenuServiceImpl extends ServiceImpl<SysRoleMenuMapper, SysRo
     }
 
     /**
+     * 删除角色菜单权限
+     * @param roleId
+     */
+    @Override
+    public void deleteAllByRoleId(String roleId) {
+        roleMenuMapper.deleteAllByRoleId(roleId);
+    }
+
+    /**
      * 更新角色菜单权限
      * @param roleId 角色ID
      * @param menuIds 菜单id list
@@ -40,7 +49,7 @@ public class SysRoleMenuServiceImpl extends ServiceImpl<SysRoleMenuMapper, SysRo
      */
     @Override
     public Boolean modifyAuth(String roleId, List<String> menuIds) {
-        roleMenuMapper.deleteAll(roleId);
+        roleMenuMapper.deleteAllByRoleId(roleId);
         if( !CollectionUtils.isEmpty(menuIds) )
             menuIds.forEach( menuId -> this.insert( new SysRoleMenuEntity().setRoleId(roleId).setMenuId(menuId) ) );
         return true;

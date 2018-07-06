@@ -16,7 +16,7 @@ public interface SysRoleMenuMapper extends BaseMapper<SysRoleMenuEntity> {
      * 删除角色所授权菜单
      * @param roleId 角色ID
      */
-    void deleteAll(@Param("roleId")String roleId);
+    void deleteAllByRoleId(@Param("roleId")String roleId);
 
     /**
      * 获取uese已授权菜单ID list

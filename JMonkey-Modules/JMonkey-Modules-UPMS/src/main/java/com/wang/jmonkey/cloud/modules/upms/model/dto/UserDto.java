@@ -20,6 +20,8 @@ public class UserDto extends SysUserEntity {
 
     private List<String> roleIdList;
 
+    private List<SysRoleEntity> roleList;
+
     /**
      * 将dto转化为entity
      * @param userDto

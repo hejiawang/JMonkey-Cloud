@@ -35,4 +35,11 @@
         DELETE FROM sys_user_role WHERE role_id = #{roleId}
     </delete>
 
+    <select id="findRoleByUserId" resultType="com.wang.jmonkey.cloud.modules.upms.model.entity.SysRoleEntity">
+        SELECT r.*
+        FROM sys_user_role ur
+        LEFT JOIN sys_role r ON ur.role_id = r.id AND r.delete_flag = 'Used'
+        WHERE ur.user_id = #{userId}
+    </select>
+
 </mapper>

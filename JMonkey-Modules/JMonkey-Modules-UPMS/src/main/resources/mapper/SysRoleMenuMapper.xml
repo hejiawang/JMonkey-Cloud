@@ -15,7 +15,7 @@
         <result column="delete_flag" property="deleteFlag" />
     </resultMap>
 
-    <delete id="deleteAll">
+    <delete id="deleteAllByRoleId">
         DELETE FROM sys_role_menu WHERE role_id = #{roleId}
     </delete>
 

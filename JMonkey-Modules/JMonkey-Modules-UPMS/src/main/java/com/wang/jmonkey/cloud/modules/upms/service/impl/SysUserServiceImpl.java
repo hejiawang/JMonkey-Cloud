@@ -5,7 +5,9 @@ import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.wang.jmonkey.cloud.modules.upms.mapper.SysUserMapper;
 import com.wang.jmonkey.cloud.modules.upms.model.dto.UserDto;
+import com.wang.jmonkey.cloud.modules.upms.model.entity.SysRoleEntity;
 import com.wang.jmonkey.cloud.modules.upms.model.entity.SysUserEntity;
+import com.wang.jmonkey.cloud.modules.upms.service.ISysRoleService;
 import com.wang.jmonkey.cloud.modules.upms.service.ISysUserRoleService;
 import com.wang.jmonkey.cloud.modules.upms.service.ISysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -72,6 +75,12 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUserEntity
         return this.selectPage(page, userWrapper);
     }
 
+    @Override
+    public boolean deleteById(Serializable id) {
+        userRoleService.deleteAllByUserId(String.valueOf(id));
+        return super.deleteById(id);
+    }
+
     /**
      * 查找用户信息
      * @param id 用户ID
@@ -81,8 +90,9 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUserEntity
     public UserDto findDtoById(String id) {
         SysUserEntity userEntity = this.selectById(id);
         List<String> roleIdList = userRoleService.findRoleIdByUserId(id);
+        List<SysRoleEntity> roleList = userRoleService.findRoleByUserId(id);
 
-        return UserDto.converFromEntity(userEntity).setRoleIdList(roleIdList);
+        return UserDto.converFromEntity(userEntity).setRoleIdList(roleIdList).setRoleList(roleList);
     }
 
     /**

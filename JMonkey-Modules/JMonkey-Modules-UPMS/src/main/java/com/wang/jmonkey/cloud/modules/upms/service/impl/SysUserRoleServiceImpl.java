@@ -2,6 +2,7 @@ package com.wang.jmonkey.cloud.modules.upms.service.impl;
 
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.wang.jmonkey.cloud.modules.upms.mapper.SysUserRoleMapper;
+import com.wang.jmonkey.cloud.modules.upms.model.entity.SysRoleEntity;
 import com.wang.jmonkey.cloud.modules.upms.model.entity.SysUserRoleEntity;
 import com.wang.jmonkey.cloud.modules.upms.service.ISysUserRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,24 @@ public class SysUserRoleServiceImpl extends ServiceImpl<SysUserRoleMapper, SysUs
     }
 
     /**
+     * 删除用户的角色
+     * @param userId
+     */
+    @Override
+    public void deleteAllByUserId( String userId ){
+        userRoleMapper.deleteAllByUserId(userId);
+    }
+
+    /**
+     * 删除拥有该角色的用户
+     * @param roleId
+     */
+    @Override
+    public void deleteAllByRoleId( String roleId ){
+        userRoleMapper.deleteAllByRoleId(roleId);
+    }
+
+    /**
      * 设置用户角色
      * @param userId 用户ID
      * @param roleIds 角色list
@@ -67,5 +86,15 @@ public class SysUserRoleServiceImpl extends ServiceImpl<SysUserRoleMapper, SysUs
         if(!CollectionUtils.isEmpty(userIds))
             userIds.forEach( userId -> this.insert(new SysUserRoleEntity().setRoleId(roleId).setUserId(userId)) );
         return true;
+    }
+
+    /**
+     * 获取用户的角色
+     * @param userId 用户ID
+     * @return 角色list
+     */
+    @Override
+    public List<SysRoleEntity> findRoleByUserId(String userId) {
+        return userRoleMapper.findRoleByUserId(userId);
     }
 }

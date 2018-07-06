@@ -1,6 +1,7 @@
 package com.wang.jmonkey.cloud.modules.upms.service;
 
 import com.baomidou.mybatisplus.service.IService;
+import com.wang.jmonkey.cloud.modules.upms.model.entity.SysRoleEntity;
 import com.wang.jmonkey.cloud.modules.upms.model.entity.SysUserRoleEntity;
 
 import java.util.List;
@@ -27,6 +28,18 @@ public interface ISysUserRoleService extends IService<SysUserRoleEntity> {
     List<String> findUserIdByRoleId(String roleId);
 
     /**
+     * 删除用户的角色
+     * @param userId
+     */
+    void deleteAllByUserId( String userId );
+
+    /**
+     * 删除拥有该角色的用户
+     * @param roleId
+     */
+    void deleteAllByRoleId( String roleId );
+
+    /**
      * 设置用户角色
      * @param userId 用户ID
      * @param roleIds 角色list
@@ -42,4 +55,10 @@ public interface ISysUserRoleService extends IService<SysUserRoleEntity> {
      */
     Boolean saveUsers(String roleId, List<String> userIds);
 
+    /**
+     * 获取用户的角色
+     * @param userId 用户ID
+     * @return 角色list
+     */
+    List<SysRoleEntity> findRoleByUserId(String userId);
 }

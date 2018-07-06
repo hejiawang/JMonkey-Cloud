@@ -20,6 +20,12 @@ public interface ISysRoleMenuService extends IService<SysRoleMenuEntity> {
     List<String> findMenuByRole(String roleId);
 
     /**
+     * 删除角色菜单权限
+     * @param roleId
+     */
+    void deleteAllByRoleId(String roleId);
+
+    /**
      * 更新角色菜单权限
      * @param roleId 角色ID
      * @param menuIds 菜单id list
