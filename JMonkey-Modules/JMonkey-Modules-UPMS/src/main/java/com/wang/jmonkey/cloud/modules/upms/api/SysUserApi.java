@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.plugins.Page;
 import com.wang.jmonkey.cloud.common.http.abs.BaseHttp;
 import com.wang.jmonkey.cloud.common.http.result.HttpPageResult;
 import com.wang.jmonkey.cloud.common.http.result.HttpResult;
+import com.wang.jmonkey.cloud.modules.upms.model.dto.UserDto;
 import com.wang.jmonkey.cloud.modules.upms.model.entity.SysUserEntity;
 import com.wang.jmonkey.cloud.modules.upms.service.ISysUserService;
 import org.springframework.web.bind.annotation.*;
@@ -36,22 +37,22 @@ public class SysUserApi extends BaseHttp {
 
     /**
      * 保存用户信息
-     * @param userEntity 用户信息
+     * @param UserDto 用户信息
      * @return
      */
     @PostMapping(value = "/save")
-    public HttpResult<Boolean> save( @RequestBody SysUserEntity userEntity){
-        return new HttpResult<>(sysUserService.insert(userEntity));
+    public HttpResult<Boolean> save( @RequestBody UserDto UserDto ){
+        return new HttpResult<>(sysUserService.insert(UserDto));
     }
 
     /**
      * 修改用户信息
-     * @param userEntity 用户信息
+     * @param UserDto 用户信息
      * @return
      */
     @PutMapping(value = "/modify")
-    public HttpResult<Boolean> modify( @RequestBody SysUserEntity userEntity ){
-        return new HttpResult<>(sysUserService.updateById(userEntity));
+    public HttpResult<Boolean> modify( @RequestBody UserDto UserDto ){
+        return new HttpResult<>(sysUserService.updateById(UserDto));
     }
 
     /**
@@ -69,9 +70,9 @@ public class SysUserApi extends BaseHttp {
      * @param id 用户ID
      * @return
      */
-    @GetMapping(value = "/find/{id}")
-    public HttpResult<SysUserEntity> findById( @PathVariable Serializable id ){
-        return new HttpResult<>(sysUserService.selectById(id));
+    @GetMapping(value = "/findDto/{id}")
+    public HttpResult<UserDto> findDtoById( @PathVariable String id ){
+        return new HttpResult<>(sysUserService.findDtoById(id));
     }
 
     /**
