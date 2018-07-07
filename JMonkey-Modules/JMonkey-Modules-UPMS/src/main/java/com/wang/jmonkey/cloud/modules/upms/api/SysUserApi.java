@@ -66,6 +66,16 @@ public class SysUserApi extends BaseHttp {
     }
 
     /**
+     * 重置用户密码为123456
+     * @param id 用户id
+     * @return
+     */
+    @GetMapping(value = "/restPasswsord/{id}")
+    public HttpResult<Boolean> restPasswsord( @PathVariable String id ){
+        return new HttpResult<>(sysUserService.restPasswsord(id));
+    }
+
+    /**
      * 查找用户信息
      * @param id 用户ID
      * @return

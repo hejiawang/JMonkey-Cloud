@@ -61,6 +61,17 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUserEntity
     }
 
     /**
+     * 重置用户密码为123456
+     * @param id 用户id
+     * @return
+     */
+    @Override
+    public Boolean restPasswsord(String id) {
+        String pw = new BCryptPasswordEncoder().encode( "123456" );
+        return this.updateById( new SysUserEntity().setId(id).setPassword(pw) );
+    }
+
+    /**
      * 分页查询用户列表数据
      * @param page page
      * @param userEntity 用户信息
@@ -90,9 +101,8 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUserEntity
     public UserDto findDtoById(String id) {
         SysUserEntity userEntity = this.selectById(id);
         List<String> roleIdList = userRoleService.findRoleIdByUserId(id);
-        List<SysRoleEntity> roleList = userRoleService.findRoleByUserId(id);
 
-        return UserDto.converFromEntity(userEntity).setRoleIdList(roleIdList).setRoleList(roleList);
+        return UserDto.converFromEntity(userEntity).setRoleIdList(roleIdList);
     }
 
     /**

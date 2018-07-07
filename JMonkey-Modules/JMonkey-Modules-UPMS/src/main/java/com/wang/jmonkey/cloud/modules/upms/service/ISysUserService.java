@@ -27,6 +27,13 @@ public interface ISysUserService extends IService<SysUserEntity> {
     boolean insert(UserDto userDto);
 
     /**
+     * 重置用户密码为123456
+     * @param id 用户id
+     * @return
+     */
+    Boolean restPasswsord(String id);
+
+    /**
      * 分页查询用户列表数据
      * @param page page
      * @param userEntity 用户信息

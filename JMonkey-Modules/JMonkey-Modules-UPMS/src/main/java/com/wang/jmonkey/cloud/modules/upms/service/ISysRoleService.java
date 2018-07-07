@@ -32,4 +32,5 @@ public interface ISysRoleService extends IService<SysRoleEntity> {
      * @return
      */
     Boolean checkName(SysRoleEntity roleEntity);
+
 }

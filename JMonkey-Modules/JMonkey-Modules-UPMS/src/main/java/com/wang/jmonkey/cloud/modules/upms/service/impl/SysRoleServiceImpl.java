@@ -77,4 +77,5 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRoleEntity
     public Boolean checkName(SysRoleEntity roleEntity) {
         return roleMapper.checkName(roleEntity) > 0;
     }
+
 }
