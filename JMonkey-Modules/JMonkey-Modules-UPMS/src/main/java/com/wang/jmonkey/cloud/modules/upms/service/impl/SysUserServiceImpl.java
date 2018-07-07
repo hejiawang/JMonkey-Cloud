@@ -1,5 +1,6 @@
 package com.wang.jmonkey.cloud.modules.upms.service.impl;
 
+import com.baomidou.mybatisplus.enums.SqlLike;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
@@ -80,7 +81,9 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUserEntity
     @Override
     public Page<SysUserEntity> selectPage(Page<SysUserEntity> page, SysUserEntity userEntity){
         EntityWrapper<SysUserEntity> userWrapper = new EntityWrapper<>();
-        userWrapper.setEntity(userEntity);
+        userWrapper.setEntity(new SysUserEntity());
+        userWrapper.like("username", userEntity.getUsername(), SqlLike.DEFAULT);
+        userWrapper.like("phone", userEntity.getPhone(), SqlLike.DEFAULT);
         userWrapper.orderBy( "create_date", false );
 
         return this.selectPage(page, userWrapper);
