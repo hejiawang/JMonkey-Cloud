@@ -4,6 +4,7 @@ CREATE TABLE `sys_user` (
   `username` varchar(64) COLLATE utf8mb4_bin NOT NULL COMMENT '用户名',
   `password` varchar(255) COLLATE utf8mb4_bin NOT NULL,
   `salt` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '随机盐',
+  `real_name` varchar(64) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '真是姓名',
   `phone` varchar(20) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '手机号码',
   `sex` varchar(20) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '性别 man男 woman女 other其他',
   `create_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',

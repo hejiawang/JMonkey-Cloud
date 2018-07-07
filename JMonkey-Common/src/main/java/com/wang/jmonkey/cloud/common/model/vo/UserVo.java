@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -40,6 +41,11 @@ public class UserVo  extends BaseVo {
     private String salt;
 
     /**
+     * 用户真是姓名
+     */
+    private String realName;
+
+    /**
      * 手机号码
      */
     private String phone;
@@ -49,6 +55,11 @@ public class UserVo  extends BaseVo {
      */
     @JSONField(serialzeFeatures= SerializerFeature.WriteEnumUsingToString)
     private SexEnum sex;
+
+    /**
+     * 出生日期
+     */
+    private Date birthday;
 
     private List<RoleVo> roleList = new ArrayList<>();
 

@@ -11,6 +11,7 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * @Description: 用户信息
@@ -44,6 +45,11 @@ public class SysUserEntity extends BaseEntity<SysUserEntity> {
     private String salt;
 
     /**
+     * 用户真是姓名
+     */
+    private String realName;
+
+    /**
      * 手机号码
      */
     private String phone;
@@ -53,6 +59,11 @@ public class SysUserEntity extends BaseEntity<SysUserEntity> {
      */
     @JSONField(serialzeFeatures= SerializerFeature.WriteEnumUsingToString)
     private SexEnum sex;
+
+    /**
+     * 出生日期
+     */
+    private Date birthday;
 
     @Override
     protected Serializable pkVal() {

@@ -8,8 +8,10 @@
         <result column="username" property="userName" />
         <result column="password" property="password" />
         <result column="salt" property="salt" />
+        <result column="real_name" property="realName" />
         <result column="phone" property="phone" />
         <result column="sex" property="sex" />
+        <result column="birthday" property="birthday" />
         <result column="create_date" property="createDate" />
         <result column="create_by" property="createBy" />
         <result column="update_date" property="updateDate" />
