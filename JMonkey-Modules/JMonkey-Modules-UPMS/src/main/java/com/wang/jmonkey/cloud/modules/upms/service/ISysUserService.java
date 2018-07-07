@@ -39,7 +39,7 @@ public interface ISysUserService extends IService<SysUserEntity> {
      * @param userEntity 用户信息
      * @return 用户分页信息
      */
-    Page<SysUserEntity> selectPage(Page<SysUserEntity> page, SysUserEntity userEntity);
+    Page<UserDto> selectPage(Page<SysUserEntity> page, SysUserEntity userEntity);
 
     /**
      * 查找用户信息

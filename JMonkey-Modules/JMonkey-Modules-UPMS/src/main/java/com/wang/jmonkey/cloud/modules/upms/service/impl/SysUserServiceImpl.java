@@ -16,7 +16,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import javax.jws.soap.SOAPBinding;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -79,16 +81,33 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUserEntity
      * @return 用户分页信息
      */
     @Override
-    public Page<SysUserEntity> selectPage(Page<SysUserEntity> page, SysUserEntity userEntity){
-        EntityWrapper<SysUserEntity> userWrapper = new EntityWrapper<>();
-        userWrapper.setEntity(new SysUserEntity());
-        userWrapper.like("username", userEntity.getUsername(), SqlLike.DEFAULT);
-        userWrapper.like("phone", userEntity.getPhone(), SqlLike.DEFAULT);
-        userWrapper.orderBy( "create_date", false );
-
-        return this.selectPage(page, userWrapper);
+    public Page<UserDto> selectPage(Page<SysUserEntity> page, SysUserEntity userEntity){
+        EntityWrapper<SysUserEntity> userWrapper = new EntityWrapper<>(new SysUserEntity());
+        userWrapper.like("username", userEntity.getUsername(), SqlLike.DEFAULT)
+                .like("phone", userEntity.getPhone(), SqlLike.DEFAULT)
+                .orderBy( "create_date", false );
+        return this.converPage(this.selectPage(page, userWrapper));
     }
 
+    private Page<UserDto> converPage( Page<SysUserEntity> userPage ){
+        List<UserDto> userDtoList = new ArrayList<>();
+
+        List<SysUserEntity> userEntityList = userPage.getRecords();
+        userEntityList.forEach( user -> {
+            UserDto userDto = UserDto.converFromEntity(user).setRoleList(userRoleService.findRoleByUserId(user.getId()));
+            userDtoList.add(userDto);
+        });
+
+        Page<UserDto> userDtoPage = new Page<>();
+        userDtoPage.setRecords(userDtoList).setTotal(userPage.getTotal()).setCurrent(userPage.getCurrent()).setSize(userPage.getSize());
+        return userDtoPage;
+    }
+
+    /**
+     * 删除用户信息，并删除用户的角色信息
+     * @param id
+     * @return
+     */
     @Override
     public boolean deleteById(Serializable id) {
         userRoleService.deleteAllByUserId(String.valueOf(id));

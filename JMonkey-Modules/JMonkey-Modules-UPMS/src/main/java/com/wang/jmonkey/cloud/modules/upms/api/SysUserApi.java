@@ -31,7 +31,7 @@ public class SysUserApi extends BaseHttp {
      * @return
      */
     @GetMapping(value = "/list")
-    public HttpPageResult<SysUserEntity> list(Page<SysUserEntity> page, SysUserEntity userEntity) {
+    public HttpPageResult<UserDto> list(Page<SysUserEntity> page, SysUserEntity userEntity) {
         return new HttpPageResult<>( sysUserService.selectPage( page, userEntity ) );
     }
 
