@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.io.Serializable;
@@ -42,6 +43,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUserEntity
      * @return
      */
     @Override
+    @Transactional
     public boolean updateById(UserDto userDto) {
         SysUserEntity userEntity = UserDto.converToEntity(userDto);
         super.updateById(userEntity);
@@ -55,6 +57,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUserEntity
      * @return 是否成功
      */
     @Override
+    @Transactional
     public boolean insert(UserDto userDto) {
         SysUserEntity userEntity = UserDto.converToEntity(userDto);
         String password = ENCODER.encode(userEntity.getPassword());
@@ -110,6 +113,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUserEntity
      * @return
      */
     @Override
+    @Transactional
     public boolean deleteById(Serializable id) {
         userRoleService.deleteAllByUserId(String.valueOf(id));
         return super.deleteById(id);

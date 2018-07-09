@@ -7,6 +7,7 @@ import com.wang.jmonkey.cloud.modules.upms.model.entity.SysUserRoleEntity;
 import com.wang.jmonkey.cloud.modules.upms.service.ISysUserRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 import java.util.List;
@@ -67,6 +68,7 @@ public class SysUserRoleServiceImpl extends ServiceImpl<SysUserRoleMapper, SysUs
      * @return
      */
     @Override
+    @Transactional
     public Boolean saveRoles(String userId, List<String> roleIds) {
         userRoleMapper.deleteAllByUserId(userId);
         if(!CollectionUtils.isEmpty(roleIds))
@@ -81,6 +83,7 @@ public class SysUserRoleServiceImpl extends ServiceImpl<SysUserRoleMapper, SysUs
      * @return
      */
     @Override
+    @Transactional
     public Boolean saveUsers(String roleId, List<String> userIds) {
         userRoleMapper.deleteAllByRoleId( roleId );
         if(!CollectionUtils.isEmpty(userIds))

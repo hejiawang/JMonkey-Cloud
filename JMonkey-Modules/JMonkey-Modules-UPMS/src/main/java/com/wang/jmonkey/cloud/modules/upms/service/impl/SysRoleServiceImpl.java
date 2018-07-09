@@ -13,6 +13,7 @@ import com.wang.jmonkey.cloud.modules.upms.service.ISysRoleService;
 import com.wang.jmonkey.cloud.modules.upms.service.ISysUserRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.io.Serializable;
@@ -52,6 +53,7 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRoleEntity
     }
 
     @Override
+    @Transactional
     public boolean deleteById(Serializable id) {
         userRoleService.deleteAllByRoleId(String.valueOf(id));
         roleMenuService.deleteAllByRoleId(String.valueOf(id));
