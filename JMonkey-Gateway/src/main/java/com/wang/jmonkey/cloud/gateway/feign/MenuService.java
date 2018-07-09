@@ -18,9 +18,9 @@ public interface MenuService {
 
     /**
      * 获取角色的菜单权限
-     * @param roleId 角色ID
+     * @param roleCode 角色Code
      * @return 菜单信息
      */
-    @GetMapping(value = "/roleMenu/findMenuVoByRoleId/{roleId}")
-    Set<MenuVo> findMenuVoByRoleId( @PathVariable("roleId") String roleId );
+    @GetMapping(value = "/roleMenu/findMenuVoByRoleCode/{roleCode}")
+    Set<MenuVo> findMenuVoByRoleCode( @PathVariable("roleCode") String roleCode );
 }

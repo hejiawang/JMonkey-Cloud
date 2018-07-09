@@ -44,11 +44,11 @@ public class SysRoleMenuApi extends BaseHttp {
 
     /**
      * 获取角色的菜单
-     * @param roleId 角色ID
+     * @param roleCode roleCode
      * @return 菜单list
      */
-    @GetMapping("/findMenuVoByRoleId/{roleId}")
-    public List<MenuVo> findMenuVoByRoleId( @PathVariable("roleId") String roleId ){
-        return roleMenuService.findMenuVoByRoleId(roleId);
+    @GetMapping("/findMenuVoByRoleCode/{roleCode}")
+    public List<MenuVo> findMenuVoByRoleCode( @PathVariable("roleCode") String roleCode ){
+        return roleMenuService.findMenuVoByRoleCode(roleCode);
     }
 }

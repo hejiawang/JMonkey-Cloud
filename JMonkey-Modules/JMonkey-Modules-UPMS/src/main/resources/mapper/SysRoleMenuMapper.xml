@@ -43,10 +43,11 @@
         SELECT menu_id FROM sys_role_menu WHERE role_id = #{roleId}
     </select>
 
-    <select id="findMenuVoByRoleId" resultMap="MenuVoResultMap">
+    <select id="findMenuVoByRoleCode" resultMap="MenuVoResultMap">
         SELECT m.*
-        FROM sys_role_menu rm
-        LEFT JOIN sys_menu m ON rm.menu_id = m.id AND m.delete_flag = 'Used'
-        WHERE rm.delete_flag = 'Used' AND rm.role_id = #{roleId}
+        FROM sys_menu m
+        LEFT JOIN sys_role_menu rm ON rm.menu_id = m.id AND rm.delete_flag = 'Used'
+        LEFT JOIN sys_role r ON r.id = rm.role_id AND r.delete_flag = 'Used'
+        WHERE m.delete_flag = 'Used' AND r.code = #{roleCode}
     </select>
 </mapper>

@@ -36,8 +36,8 @@ public interface ISysRoleMenuService extends IService<SysRoleMenuEntity> {
 
     /**
      * 获取角色的菜单
-     * @param roleId 角色ID
+     * @param roleCode roleCode
      * @return 菜单list
      */
-    List<MenuVo> findMenuVoByRoleId(String roleId);
+    List<MenuVo> findMenuVoByRoleCode(String roleCode);
 }

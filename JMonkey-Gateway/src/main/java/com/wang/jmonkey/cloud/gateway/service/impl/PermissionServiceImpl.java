@@ -63,7 +63,7 @@ public class PermissionServiceImpl implements PermissionService {
         Set<MenuVo> urls = new HashSet<>();
         grantedAuthorityList.forEach( authority -> {
             if ( !StringUtils.equals(authority.getAuthority(), SecurityConstants.BASE_ROLE) ) {
-                Set<MenuVo> menuVOSet = menuService.findMenuVoByRoleId(authority.getAuthority());
+                Set<MenuVo> menuVOSet = menuService.findMenuVoByRoleCode(authority.getAuthority());
                 if (CollUtil.isNotEmpty(menuVOSet)) CollUtil.addAll(urls, menuVOSet);
             }
         });

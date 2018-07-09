@@ -58,11 +58,11 @@ public class SysRoleMenuServiceImpl extends ServiceImpl<SysRoleMenuMapper, SysRo
 
     /**
      * 获取角色的菜单
-     * @param roleId 角色ID
+     * @param roleCode roleCode
      * @return 菜单list
      */
     @Override
-    public List<MenuVo> findMenuVoByRoleId(String roleId) {
-        return roleMenuMapper.findMenuVoByRoleId(roleId);
+    public List<MenuVo> findMenuVoByRoleCode(String roleCode) {
+        return roleMenuMapper.findMenuVoByRoleCode(roleCode);
     }
 }

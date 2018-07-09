@@ -17,8 +17,8 @@ import java.util.Set;
 public class MenuServiceFallbackImpl implements MenuService {
 
     @Override
-    public Set<MenuVo> findMenuVoByRoleId(String roleId) {
-        log.error("调用{}异常:{}", "findMenuByRole", roleId);
+    public Set<MenuVo> findMenuVoByRoleCode(String roleCode) {
+        log.error("调用{}异常:{}", "findMenuByRole", roleCode);
         return null;
     }
 }
