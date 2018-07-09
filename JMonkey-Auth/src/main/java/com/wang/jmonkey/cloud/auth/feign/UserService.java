@@ -4,6 +4,7 @@ import com.wang.jmonkey.cloud.auth.feign.fallback.UserServiceFallbackImpl;
 import com.wang.jmonkey.cloud.common.model.vo.UserVo;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 /**
  * @Description: 用户服务
@@ -19,5 +20,5 @@ public interface UserService {
      * @return
      */
     @GetMapping("/user/findUserVoByUsername/{username}")
-    UserVo findUserVoByUsername( String username );
+    UserVo findUserVoByUsername( @PathVariable("username") String username );
 }

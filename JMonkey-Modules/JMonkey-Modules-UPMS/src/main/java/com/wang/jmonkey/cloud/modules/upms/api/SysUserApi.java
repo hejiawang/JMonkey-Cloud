@@ -112,7 +112,7 @@ public class SysUserApi extends BaseHttp {
      * @return 用户vo
      */
     @GetMapping("/findUserVoByUsername/{username}")
-    public UserVo findUserVoByUsername(@PathVariable String username){
+    public UserVo findUserVoByUsername(@PathVariable("username") String username){
         return sysUserService.findUserVoByUsername(username);
     }
 }

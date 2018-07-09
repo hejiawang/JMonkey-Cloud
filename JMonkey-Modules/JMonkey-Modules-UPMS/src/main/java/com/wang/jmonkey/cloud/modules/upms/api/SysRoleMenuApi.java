@@ -48,7 +48,7 @@ public class SysRoleMenuApi extends BaseHttp {
      * @return 菜单list
      */
     @GetMapping("/findMenuVoByRoleId/{roleId}")
-    public List<MenuVo> findMenuVoByRoleId( @PathVariable String roleId ){
+    public List<MenuVo> findMenuVoByRoleId( @PathVariable("roleId") String roleId ){
         return roleMenuService.findMenuVoByRoleId(roleId);
     }
 }
