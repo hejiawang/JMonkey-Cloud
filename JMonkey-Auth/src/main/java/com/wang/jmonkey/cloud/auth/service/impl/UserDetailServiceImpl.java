@@ -1,15 +1,13 @@
 package com.wang.jmonkey.cloud.auth.service.impl;
 
-import com.wang.jmonkey.cloud.common.model.enums.RecordStatusEnum;
-import com.wang.jmonkey.cloud.common.model.vo.RoleVo;
+import com.wang.jmonkey.cloud.auth.feign.UserService;
 import com.wang.jmonkey.cloud.common.model.vo.UserVo;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -20,18 +18,12 @@ import java.util.List;
 @Service("userDetailService")
 public class UserDetailServiceImpl implements UserDetailsService {
 
+    @Resource
+    private UserService userService;
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-        String finalPassword = bCryptPasswordEncoder.encode("123456");
-
-        List<RoleVo> roleList = new ArrayList<>();
-        roleList.add(new RoleVo().setName("name_1").setCode("code_1"));
-        roleList.add(new RoleVo().setName("name_2").setCode("code_2"));
-
-        UserVo userVo = new UserVo();
-        userVo.setRoleList(roleList).setUsername("admin").setPassword(finalPassword).setDeleteFlag(RecordStatusEnum.Used);
-
-        return new UserDetailsImpl(userVo);
+        UserVo userVo = userService.findUserVoByUsername(username);
+        return new UserDetailsImpl( userVo );
     }
 }

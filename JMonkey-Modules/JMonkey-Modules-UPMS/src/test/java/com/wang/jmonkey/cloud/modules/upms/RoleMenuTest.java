@@ -24,7 +24,7 @@ public class RoleMenuTest extends TestCase {
 
     @Test
     public void findMenuByRoleTest(){
-        List<String> menuIds = roleMenuService.findMenuByRole("1");
+        List<String> menuIds = roleMenuService.findMenuIdByRole("1");
 
         System.out.println(menuIds.size());
     }

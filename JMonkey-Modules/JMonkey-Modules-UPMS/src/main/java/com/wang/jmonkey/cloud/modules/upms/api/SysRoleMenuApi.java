@@ -2,6 +2,7 @@ package com.wang.jmonkey.cloud.modules.upms.api;
 
 import com.wang.jmonkey.cloud.common.http.abs.BaseHttp;
 import com.wang.jmonkey.cloud.common.http.result.HttpResult;
+import com.wang.jmonkey.cloud.common.model.vo.MenuVo;
 import com.wang.jmonkey.cloud.modules.upms.service.ISysRoleMenuService;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,9 +26,9 @@ public class SysRoleMenuApi extends BaseHttp {
      * @param roleId 角色ID
      * @return 菜单ID list
      */
-    @GetMapping(value = "/findMenuByRole/{roleId}")
-    public HttpResult<List<String>> findMenuByRole( @PathVariable String roleId ){
-        return new HttpResult<>( roleMenuService.findMenuByRole(roleId) );
+    @GetMapping(value = "/findMenuIdByRole/{roleId}")
+    public HttpResult<List<String>> findMenuIdByRole( @PathVariable String roleId ){
+        return new HttpResult<>( roleMenuService.findMenuIdByRole(roleId) );
     }
 
     /**
@@ -39,5 +40,15 @@ public class SysRoleMenuApi extends BaseHttp {
     @PostMapping(value="/modifyAuth")
     public HttpResult<Boolean> modifyAuth(String roleId, @RequestParam(value = "menuIds[]", required=false )List<String> menuIds ){
         return new HttpResult<>( roleMenuService.modifyAuth(roleId, menuIds) );
+    }
+
+    /**
+     * 获取角色的菜单
+     * @param roleId 角色ID
+     * @return 菜单list
+     */
+    @GetMapping("/findMenuVoByRoleId/{roleId}")
+    public List<MenuVo> findMenuVoByRoleId( @PathVariable String roleId ){
+        return roleMenuService.findMenuVoByRoleId(roleId);
     }
 }

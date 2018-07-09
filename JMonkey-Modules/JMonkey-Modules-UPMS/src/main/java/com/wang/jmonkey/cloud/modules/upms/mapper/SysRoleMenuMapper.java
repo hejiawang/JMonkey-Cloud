@@ -1,6 +1,7 @@
 package com.wang.jmonkey.cloud.modules.upms.mapper;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
+import com.wang.jmonkey.cloud.common.model.vo.MenuVo;
 import com.wang.jmonkey.cloud.modules.upms.model.entity.SysRoleMenuEntity;
 import org.apache.ibatis.annotations.Param;
 
@@ -23,5 +24,12 @@ public interface SysRoleMenuMapper extends BaseMapper<SysRoleMenuEntity> {
      * @param roleId
      * @return
      */
-    List<String> findMenuByRole(@Param("roleId")String roleId);
+    List<String> findMenuIdByRole(@Param("roleId")String roleId);
+
+    /**
+     * 获取角色的菜单
+     * @param roleId 角色ID
+     * @return 菜单list
+     */
+    List<MenuVo> findMenuVoByRoleId(@Param("roleId")String roleId);
 }

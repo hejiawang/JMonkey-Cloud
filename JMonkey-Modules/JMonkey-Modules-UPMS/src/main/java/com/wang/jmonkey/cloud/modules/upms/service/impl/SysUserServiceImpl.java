@@ -4,19 +4,18 @@ import com.baomidou.mybatisplus.enums.SqlLike;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.wang.jmonkey.cloud.common.model.vo.UserVo;
 import com.wang.jmonkey.cloud.modules.upms.mapper.SysUserMapper;
 import com.wang.jmonkey.cloud.modules.upms.model.dto.UserDto;
-import com.wang.jmonkey.cloud.modules.upms.model.entity.SysRoleEntity;
 import com.wang.jmonkey.cloud.modules.upms.model.entity.SysUserEntity;
-import com.wang.jmonkey.cloud.modules.upms.service.ISysRoleService;
 import com.wang.jmonkey.cloud.modules.upms.service.ISysUserRoleService;
 import com.wang.jmonkey.cloud.modules.upms.service.ISysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import javax.jws.soap.SOAPBinding;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +33,8 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUserEntity
 
     @Resource
     private ISysUserRoleService userRoleService;
+
+    private static final PasswordEncoder ENCODER = new BCryptPasswordEncoder();
 
     /**
      * 修改用户信息
@@ -56,7 +57,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUserEntity
     @Override
     public boolean insert(UserDto userDto) {
         SysUserEntity userEntity = UserDto.converToEntity(userDto);
-        String password = new BCryptPasswordEncoder().encode(userEntity.getPassword());
+        String password = ENCODER.encode(userEntity.getPassword());
         userEntity.setPassword(password);
         super.insert(userEntity);
 
@@ -70,7 +71,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUserEntity
      */
     @Override
     public Boolean restPasswsord(String id) {
-        String pw = new BCryptPasswordEncoder().encode( "123456" );
+        String pw = ENCODER.encode( "123456" );
         return this.updateById( new SysUserEntity().setId(id).setPassword(pw) );
     }
 
@@ -146,6 +147,16 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUserEntity
     public SysUserEntity findByUsername(String username) {
         EntityWrapper wrapper = new EntityWrapper( new SysUserEntity().setUsername(username) );
         return this.selectOne(wrapper);
+    }
+
+    /**
+     * 根据用户名称获取用户vo信息
+     * @param username 用户名称
+     * @return 用户vo
+     */
+    @Override
+    public UserVo findUserVoByUsername(String username) {
+        return userMapper.findUserVoByUsername(username);
     }
 
 }

@@ -20,6 +20,46 @@ eureka:
         serviceUrl:
             defaultZone: http://${JMonkey.eureka.userName}:${JMonkey.eureka.password}@${JMonkey.eureka.host}:${JMonkey.eureka.port}/eureka
 
+ribbon:
+    eager-load:
+        clients: JMonkey-Modules-UPMS
+        enabled: true
+    httpclient:
+        enabled: false
+    OkHttp:
+        enabled: true
+    ReadTimeout: 30000
+    ConnectTimeout: 30000
+feign:
+    hystrix:
+        enabled: true
+    okhttp:
+        enabled: true
+    httpclient:
+        enabled: false
+    client:
+        config:
+            feignName:
+                connectTimeout: 30000
+                readTimeout: 30000
+    compression:
+        request:
+            enabled: true
+        response:
+            enabled: true
+hystrix:
+    threadpool:
+        default:
+            coreSize: 500
+            maxQueueSize: 1000
+            queueSizeRejectionThreshold: 800
+    command:
+        default:
+            execution:
+                isolation:
+                    thread:
+                        timeoutInMilliseconds: 60000
+
 logging:
     config: classpath:logback.xml
 
@@ -33,3 +73,4 @@ JMonkey:
         clientId: JMonkey_client_id
         clientSecret: JMonkey_client_secret
         scope: server
+

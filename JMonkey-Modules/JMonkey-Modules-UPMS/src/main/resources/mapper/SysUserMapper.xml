@@ -20,6 +20,28 @@
         <result column="delete_flag" property="deleteFlag" />
     </resultMap>
 
+    <resultMap id="UserVOResultMap" type="com.wang.jmonkey.cloud.common.model.vo.UserVo">
+        <id column="id" property="id" />
+        <result column="username" property="userName" />
+        <result column="password" property="password" />
+        <result column="salt" property="salt" />
+        <result column="real_name" property="realName" />
+        <result column="phone" property="phone" />
+        <result column="sex" property="sex" />
+        <result column="birthday" property="birthday" />
+        <result column="create_date" property="createDate" />
+        <result column="create_by" property="createBy" />
+        <result column="update_date" property="updateDate" />
+        <result column="update_by" property="updateBy" />
+        <result column="remark" property="remark" />
+        <result column="delete_flag" property="deleteFlag" />
+        <collection property="roleList" ofType="com.wang.jmonkey.cloud.common.model.vo.RoleVo">
+            <id column="role_id" property="id" />
+            <result column="role_name" property="name" />
+            <result column="role_code" property="code" />
+        </collection>
+    </resultMap>
+
     <select id="checkUserName" resultType="java.lang.Integer">
         SELECT COUNT(1)
         FROM sys_user
@@ -28,6 +50,17 @@
         <if test=" id != '' and id != null">
             AND id != #{id}
         </if>
+    </select>
+
+    <select id="findUserVoByUsername" resultMap="UserVOResultMap">
+        SELECT
+          u.*,
+          r.id AS role_id, r.name AS role_name, r.code AS role_code
+        FROM sys_user u
+        LEFT JOIN sys_user_role ur ON ur.user_id = u.id AND ur.delete_flag = 'Used'
+        LEFT JOIN sys_role r ON r.id = ur.role_id AND r.delete_flag = 'Used'
+        WHERE u.delete_flag = 'Used'
+        AND u.username = #{username}
     </select>
 
 </mapper>

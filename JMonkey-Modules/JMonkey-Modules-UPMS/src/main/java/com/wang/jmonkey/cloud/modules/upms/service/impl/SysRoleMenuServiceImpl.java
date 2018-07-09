@@ -1,6 +1,7 @@
 package com.wang.jmonkey.cloud.modules.upms.service.impl;
 
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.wang.jmonkey.cloud.common.model.vo.MenuVo;
 import com.wang.jmonkey.cloud.modules.upms.mapper.SysRoleMenuMapper;
 import com.wang.jmonkey.cloud.modules.upms.model.entity.SysRoleMenuEntity;
 import com.wang.jmonkey.cloud.modules.upms.service.ISysRoleMenuService;
@@ -28,8 +29,8 @@ public class SysRoleMenuServiceImpl extends ServiceImpl<SysRoleMenuMapper, SysRo
      * @return 菜单ID list
      */
     @Override
-    public List<String> findMenuByRole(String roleId) {
-        return roleMenuMapper.findMenuByRole(roleId);
+    public List<String> findMenuIdByRole(String roleId) {
+        return roleMenuMapper.findMenuIdByRole(roleId);
     }
 
     /**
@@ -53,5 +54,15 @@ public class SysRoleMenuServiceImpl extends ServiceImpl<SysRoleMenuMapper, SysRo
         if( !CollectionUtils.isEmpty(menuIds) )
             menuIds.forEach( menuId -> this.insert( new SysRoleMenuEntity().setRoleId(roleId).setMenuId(menuId) ) );
         return true;
+    }
+
+    /**
+     * 获取角色的菜单
+     * @param roleId 角色ID
+     * @return 菜单list
+     */
+    @Override
+    public List<MenuVo> findMenuVoByRoleId(String roleId) {
+        return roleMenuMapper.findMenuVoByRoleId(roleId);
     }
 }

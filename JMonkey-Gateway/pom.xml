@@ -38,11 +38,6 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-feign</artifactId>
         </dependency>
-        <!--Redis-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis</artifactId>
-        </dependency>
         <!--zuul限流-->
         <dependency>
             <groupId>com.marcosbarbero.cloud</groupId>

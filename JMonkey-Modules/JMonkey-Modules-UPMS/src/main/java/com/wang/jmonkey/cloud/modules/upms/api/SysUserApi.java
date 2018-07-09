@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.plugins.Page;
 import com.wang.jmonkey.cloud.common.http.abs.BaseHttp;
 import com.wang.jmonkey.cloud.common.http.result.HttpPageResult;
 import com.wang.jmonkey.cloud.common.http.result.HttpResult;
+import com.wang.jmonkey.cloud.common.model.vo.UserVo;
 import com.wang.jmonkey.cloud.modules.upms.model.dto.UserDto;
 import com.wang.jmonkey.cloud.modules.upms.model.entity.SysUserEntity;
 import com.wang.jmonkey.cloud.modules.upms.service.ISysUserService;
@@ -103,5 +104,15 @@ public class SysUserApi extends BaseHttp {
     @GetMapping(value = "/findByUsername")
     public HttpResult<SysUserEntity> findByUsername( String username ){
         return new HttpResult<>( sysUserService.findByUsername(username) );
+    }
+
+    /**
+     * 根据用户名称获取用户vo信息
+     * @param username 用户名称
+     * @return 用户vo
+     */
+    @GetMapping("/findUserVoByUsername/{username}")
+    public UserVo findUserVoByUsername(@PathVariable String username){
+        return sysUserService.findUserVoByUsername(username);
     }
 }
