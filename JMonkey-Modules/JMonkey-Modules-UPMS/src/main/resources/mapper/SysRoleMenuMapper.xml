@@ -39,6 +39,10 @@
         DELETE FROM sys_role_menu WHERE role_id = #{roleId}
     </delete>
 
+    <delete id="deleteAllByMenuId">
+        DELETE FROM sys_role_menu WHERE menu_id = #{menuId}
+    </delete>
+
     <select id="findMenuIdByRole" resultType="java.lang.String">
         SELECT menu_id FROM sys_role_menu WHERE role_id = #{roleId}
     </select>

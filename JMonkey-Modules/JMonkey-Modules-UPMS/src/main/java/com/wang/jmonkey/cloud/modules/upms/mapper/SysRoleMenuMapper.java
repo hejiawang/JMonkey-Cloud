@@ -20,6 +20,12 @@ public interface SysRoleMenuMapper extends BaseMapper<SysRoleMenuEntity> {
     void deleteAllByRoleId(@Param("roleId")String roleId);
 
     /**
+     * 删除拥有该菜单权限的角色
+     * @param menuId 菜单角色
+     */
+    void deleteAllByMenuId(@Param("menuId")String menuId);
+
+    /**
      * 获取uese已授权菜单ID list
      * @param roleId
      * @return
@@ -32,4 +38,5 @@ public interface SysRoleMenuMapper extends BaseMapper<SysRoleMenuEntity> {
      * @return 菜单list
      */
     List<MenuVo> findMenuVoByRoleCode(@Param("roleCode")String roleCode);
+
 }

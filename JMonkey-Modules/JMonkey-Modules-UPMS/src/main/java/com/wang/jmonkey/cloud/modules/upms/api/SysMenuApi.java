@@ -50,7 +50,7 @@ public class SysMenuApi extends BaseHttp {
      */
     @PutMapping(value = "/modify")
     public HttpResult<Boolean> modify( @RequestBody SysMenuEntity menuEntity ){
-        return new HttpResult<>( sysMenuService.updateById(menuEntity) );
+        return new HttpResult<>( sysMenuService.modifyById(menuEntity) );
     }
 
     /**
@@ -60,7 +60,7 @@ public class SysMenuApi extends BaseHttp {
      */
     @DeleteMapping(value = "/delete/{id}")
     public HttpResult<Boolean> delete( @PathVariable Serializable id ){
-        return new HttpResult<>(sysMenuService.deleteById(id));
+        return new HttpResult<>(sysMenuService.deleteMenuById(id));
     }
 
     /**

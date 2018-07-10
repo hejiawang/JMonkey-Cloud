@@ -27,4 +27,19 @@ public interface ISysMenuService extends IService<SysMenuEntity> {
      * @return 菜单dto
      */
     MenuDto selectDtoById(Serializable id);
+
+    /**
+     * 修改菜单
+     * @param menuEntity 菜单信息
+     * @return
+     */
+    boolean modifyById(SysMenuEntity menuEntity);
+
+    /**
+     * 删除菜单
+     * 递归删除子菜单并删除拥有菜单权限的角色
+     * @param id 菜单ID
+     * @return
+     */
+    boolean deleteMenuById(Serializable id);
 }
