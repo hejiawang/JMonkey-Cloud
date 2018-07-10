@@ -26,6 +26,11 @@ public interface SecurityConstants {
     String BASE_ROLE = "ROLE_BASE";
 
     /**
+     * 超级管理员角色
+     */
+    String ADMIN_ROLE = "admin";
+
+    /**
      * jwt签名
      */
     String JWT_KEY = "JMONKEY_JWT_KEY";

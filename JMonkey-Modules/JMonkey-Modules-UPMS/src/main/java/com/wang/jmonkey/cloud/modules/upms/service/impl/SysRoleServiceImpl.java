@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.enums.SqlLike;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.wang.jmonkey.cloud.common.constant.SecurityConstants;
 import com.wang.jmonkey.cloud.modules.upms.mapper.SysRoleMapper;
 import com.wang.jmonkey.cloud.modules.upms.mapper.SysRoleMenuMapper;
 import com.wang.jmonkey.cloud.modules.upms.mapper.SysUserRoleMapper;
@@ -11,6 +12,7 @@ import com.wang.jmonkey.cloud.modules.upms.model.entity.SysRoleEntity;
 import com.wang.jmonkey.cloud.modules.upms.service.ISysRoleMenuService;
 import com.wang.jmonkey.cloud.modules.upms.service.ISysRoleService;
 import com.wang.jmonkey.cloud.modules.upms.service.ISysUserRoleService;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -67,6 +69,7 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRoleEntity
      */
     @Override
     public Boolean checkCode(SysRoleEntity roleEntity) {
+        if(StringUtils.equals(roleEntity.getCode(), SecurityConstants.BASE_ROLE)) return true;
         return roleMapper.checkCode(roleEntity) > 0;
     }
 

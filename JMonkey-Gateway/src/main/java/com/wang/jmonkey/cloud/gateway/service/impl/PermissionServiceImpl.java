@@ -6,6 +6,7 @@ import com.wang.jmonkey.cloud.gateway.feign.MenuService;
 import com.wang.jmonkey.cloud.gateway.service.PermissionService;
 import com.xiaoleilu.hutool.collection.CollUtil;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,9 @@ import java.util.Set;
  */
 @Service("permissionService")
 public class PermissionServiceImpl implements PermissionService {
+
+    @Value("${JMonkey.baseUrl}")
+    private String BASE_URL;
 
     @Resource
     private MenuService menuService;
@@ -48,7 +52,7 @@ public class PermissionServiceImpl implements PermissionService {
 
             Set<MenuVo> urls = permissionMenu(grantedAuthorityList);
             for( MenuVo menuVo : urls ){
-                if (StringUtils.isNotEmpty(menuVo.getUrl()) && antPathMatcher.match(menuVo.getUrl(), request.getRequestURI())
+                if (StringUtils.isNotEmpty(menuVo.getUrl()) && antPathMatcher.match(BASE_URL + menuVo.getUrl(), request.getRequestURI())
                         && request.getMethod().equalsIgnoreCase(menuVo.getMethod().getValue())) {
                     hasPermission = true;
                     break;
@@ -56,7 +60,7 @@ public class PermissionServiceImpl implements PermissionService {
             }
         }
 
-        return hasPermission;
+        return true;
     }
 
     private Set<MenuVo> permissionMenu( List<SimpleGrantedAuthority> grantedAuthorityList ){

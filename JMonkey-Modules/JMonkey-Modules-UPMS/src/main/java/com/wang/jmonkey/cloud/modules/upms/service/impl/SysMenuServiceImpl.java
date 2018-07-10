@@ -44,7 +44,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenuEntity
     public List<MenuTreeDto> treeList() {
         EntityWrapper<SysMenuEntity> wrapper = new EntityWrapper<>();
         wrapper.setEntity(new SysMenuEntity());
-        wrapper.orderBy( "sort", false );
+        wrapper.orderBy( "sort", true );
 
         return TreeUtil.bulid( MenuTreeDto.converFromEntity( this.selectList( wrapper ) ), null );
     }

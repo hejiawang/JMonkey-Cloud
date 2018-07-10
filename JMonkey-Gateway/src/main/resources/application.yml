@@ -18,10 +18,10 @@ zuul:
         socket-timeout-millis: 30000
     routes:
         auth:
-            path: /jmonkey/auth/**
+            path: ${JMonkey.baseUrl}/auth/**
             serviceId: JMonkey-Auth
         upms:
-            path: /jmonkey/upms/**
+            path: ${JMonkey.baseUrl}/upms/**
             serviceId: JMonkey-Modules-UPMS
 
 ribbon:
