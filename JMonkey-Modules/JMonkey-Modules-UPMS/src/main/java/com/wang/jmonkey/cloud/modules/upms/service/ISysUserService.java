@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.IService;
 import com.wang.jmonkey.cloud.common.model.vo.UserVo;
 import com.wang.jmonkey.cloud.modules.upms.model.dto.UserDto;
+import com.wang.jmonkey.cloud.modules.upms.model.dto.UserInfo;
 import com.wang.jmonkey.cloud.modules.upms.model.entity.SysUserEntity;
 
 /**
@@ -69,4 +70,11 @@ public interface ISysUserService extends IService<SysUserEntity> {
      * @return 用户vo
      */
     UserVo findUserVoByUsername(String username);
+
+    /**
+     * 获取用户登录信息
+     * @param userVo 用户vo
+     * @return 用户登录信息
+     */
+    UserInfo info(UserVo userVo);
 }

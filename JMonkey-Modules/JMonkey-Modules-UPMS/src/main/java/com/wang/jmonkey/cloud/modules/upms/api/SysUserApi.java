@@ -6,6 +6,7 @@ import com.wang.jmonkey.cloud.common.http.result.HttpPageResult;
 import com.wang.jmonkey.cloud.common.http.result.HttpResult;
 import com.wang.jmonkey.cloud.common.model.vo.UserVo;
 import com.wang.jmonkey.cloud.modules.upms.model.dto.UserDto;
+import com.wang.jmonkey.cloud.modules.upms.model.dto.UserInfo;
 import com.wang.jmonkey.cloud.modules.upms.model.entity.SysUserEntity;
 import com.wang.jmonkey.cloud.modules.upms.service.ISysUserService;
 import org.springframework.web.bind.annotation.*;
@@ -114,5 +115,15 @@ public class SysUserApi extends BaseHttp {
     @GetMapping("/findUserVoByUsername/{username}")
     public UserVo findUserVoByUsername(@PathVariable("username") String username){
         return sysUserService.findUserVoByUsername(username);
+    }
+
+    /**
+     * 获取用户登录信息
+     * @param userVo 用户vo
+     * @return 用户登录信息
+     */
+    @GetMapping("/info")
+    public HttpResult<UserInfo> info( UserVo userVo ){
+        return new HttpResult<>( sysUserService.info(userVo) );
     }
 }

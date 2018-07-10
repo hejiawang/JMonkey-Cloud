@@ -4,12 +4,20 @@ import com.baomidou.mybatisplus.enums.SqlLike;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.wang.jmonkey.cloud.common.constant.SecurityConstants;
+import com.wang.jmonkey.cloud.common.model.vo.MenuVo;
+import com.wang.jmonkey.cloud.common.model.vo.RoleVo;
 import com.wang.jmonkey.cloud.common.model.vo.UserVo;
 import com.wang.jmonkey.cloud.modules.upms.mapper.SysUserMapper;
 import com.wang.jmonkey.cloud.modules.upms.model.dto.UserDto;
+import com.wang.jmonkey.cloud.modules.upms.model.dto.UserInfo;
 import com.wang.jmonkey.cloud.modules.upms.model.entity.SysUserEntity;
+import com.wang.jmonkey.cloud.modules.upms.service.ISysRoleMenuService;
 import com.wang.jmonkey.cloud.modules.upms.service.ISysUserRoleService;
 import com.wang.jmonkey.cloud.modules.upms.service.ISysUserService;
+import com.xiaoleilu.hutool.collection.CollectionUtil;
+import com.xiaoleilu.hutool.util.StrUtil;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -19,7 +27,9 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @Description: 用户信息service实现
@@ -34,6 +44,9 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUserEntity
 
     @Resource
     private ISysUserRoleService userRoleService;
+
+    @Resource
+    private ISysRoleMenuService roleMenuService;
 
     private static final PasswordEncoder ENCODER = new BCryptPasswordEncoder();
 
@@ -161,6 +174,46 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUserEntity
     @Override
     public UserVo findUserVoByUsername(String username) {
         return userMapper.findUserVoByUsername(username);
+    }
+
+    /**
+     * 获取用户登录信息
+     * @param userVo 用户vo
+     * @return 用户登录信息
+     */
+    @Override
+    public UserInfo info(UserVo userVo) {
+        List<String> roleCodeList = this.infoRoleCode(userVo);
+        List<String> permissionList = this.infoPermission(roleCodeList);
+
+        return new UserInfo().setUser(this.findByUsername(userVo.getUsername()))
+                .setRoleCodeList(roleCodeList).setPermissionList(permissionList);
+    }
+
+    private List<String> infoRoleCode( UserVo userVo ){
+        List<String> roleCodeList = new ArrayList<>();
+
+        List<RoleVo> roleVoList = userVo.getRoleList();
+        if( CollectionUtil.isNotEmpty(roleVoList) ) {
+            roleVoList.forEach( roleVo -> {
+                if( !StrUtil.equals(SecurityConstants.BASE_ROLE, roleVo.getCode()) ) roleCodeList.add(roleVo.getCode());
+            });
+        }
+
+        return roleCodeList;
+    }
+
+    private List<String> infoPermission( List<String> roleCodeList ){
+        List<String> permissionList = new ArrayList<>();
+
+        Set<MenuVo> menuVoSet = new HashSet<>();
+        roleCodeList.forEach( roleCode -> menuVoSet.addAll(roleMenuService.findMenuVoByRoleCode(roleCode)) );
+
+        menuVoSet.forEach( menuVo -> {
+            if (StringUtils.isNotEmpty(menuVo.getPermission())) permissionList.add(menuVo.getPermission());
+        });
+
+        return permissionList;
     }
 
 }

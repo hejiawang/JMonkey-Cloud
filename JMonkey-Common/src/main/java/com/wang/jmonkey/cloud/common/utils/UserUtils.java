@@ -71,8 +71,8 @@ public class UserUtils {
         String token = getToken(httpServletRequest);
         String key = Base64.getEncoder().encodeToString(SecurityConstants.JWT_KEY.getBytes());
         Claims claims = Jwts.parser().setSigningKey(key).parseClaimsJws(token).getBody();
-        List<String> roleNames = (List<String>) claims.get("authorities");
-        return roleNames;
+        List<String> roleCodes = (List<String>) claims.get("authorities");
+        return roleCodes;
     }
 
     /**
