@@ -2,6 +2,8 @@ package com.wang.jmonkey.cloud.modules.upms.service.impl;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.wang.jmonkey.cloud.common.model.enums.MenuTypeEnum;
+import com.wang.jmonkey.cloud.common.model.vo.MenuVo;
 import com.wang.jmonkey.cloud.common.utils.TreeUtil;
 import com.wang.jmonkey.cloud.modules.upms.mapper.SysMenuMapper;
 import com.wang.jmonkey.cloud.modules.upms.mapper.SysRoleMenuMapper;
@@ -10,6 +12,7 @@ import com.wang.jmonkey.cloud.modules.upms.model.dto.MenuTreeDto;
 import com.wang.jmonkey.cloud.modules.upms.model.entity.SysMenuEntity;
 import com.wang.jmonkey.cloud.modules.upms.service.ISysMenuService;
 import com.wang.jmonkey.cloud.modules.upms.service.ISysRoleMenuService;
+import com.xiaoleilu.hutool.collection.CollUtil;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
@@ -19,8 +22,7 @@ import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * @Description: 菜单信息service实现
@@ -80,5 +82,24 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenuEntity
 
         roleMenuService.deleteAllByMenuId( String.valueOf(id) );
         return this.deleteById(id);
+    }
+
+    /**
+     * 角色list 拥有的菜单
+     * @param roleCodeList
+     * @return
+     */
+    @Override
+    public List<MenuTreeDto> userMenu(List<String> roleCodeList) {
+        Set<MenuVo> allMenuSet = new HashSet<>();
+        roleCodeList.forEach(roleCode -> allMenuSet.addAll(roleMenuService.findMenuVoByRoleCode(roleCode)) );
+
+        List<MenuTreeDto> menuTreeList = new ArrayList<>();
+        allMenuSet.forEach( menuVo -> {
+            if(MenuTypeEnum.Menu.equals(menuVo.getType())) menuTreeList.add( MenuTreeDto.converFromVo(menuVo) );
+        });
+
+        CollUtil.sort(menuTreeList, Comparator.comparingInt(MenuTreeDto::getSort));
+        return TreeUtil.bulid( menuTreeList, null );
     }
 }

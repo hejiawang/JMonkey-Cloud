@@ -3,6 +3,7 @@ package com.wang.jmonkey.cloud.modules.upms.service.impl;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.wang.jmonkey.cloud.common.model.vo.MenuVo;
 import com.wang.jmonkey.cloud.modules.upms.mapper.SysRoleMenuMapper;
+import com.wang.jmonkey.cloud.modules.upms.model.entity.SysMenuEntity;
 import com.wang.jmonkey.cloud.modules.upms.model.entity.SysRoleMenuEntity;
 import com.wang.jmonkey.cloud.modules.upms.service.ISysRoleMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,4 +82,5 @@ public class SysRoleMenuServiceImpl extends ServiceImpl<SysRoleMenuMapper, SysRo
     public List<MenuVo> findMenuVoByRoleCode(String roleCode) {
         return roleMenuMapper.findMenuVoByRoleCode(roleCode);
     }
+
 }

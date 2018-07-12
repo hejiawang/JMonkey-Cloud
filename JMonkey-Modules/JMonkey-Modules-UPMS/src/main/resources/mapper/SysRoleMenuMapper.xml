@@ -15,7 +15,7 @@
         <result column="delete_flag" property="deleteFlag" />
     </resultMap>
 
-    <resultMap id="MenuVoResultMap" type="com.wang.jmonkey.cloud.common.model.vo.MenuVo">
+    <resultMap id="MenuResultMap" type="com.wang.jmonkey.cloud.modules.upms.model.entity.SysMenuEntity">
         <id column="id" property="id" />
         <result column="name" property="name" />
         <result column="permission" property="permission" />
@@ -34,6 +34,8 @@
         <result column="remark" property="remark" />
         <result column="delete_flag" property="deleteFlag" />
     </resultMap>
+
+    <resultMap id="MenuVoResultMap" type="com.wang.jmonkey.cloud.common.model.vo.MenuVo" extends="MenuResultMap"></resultMap>
 
     <delete id="deleteAllByRoleId">
         DELETE FROM sys_role_menu WHERE role_id = #{roleId}
@@ -54,4 +56,5 @@
         LEFT JOIN sys_role r ON r.id = rm.role_id AND r.delete_flag = 'Used'
         WHERE m.delete_flag = 'Used' AND r.code = #{roleCode}
     </select>
+
 </mapper>

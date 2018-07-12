@@ -2,6 +2,7 @@ package com.wang.jmonkey.cloud.modules.upms.api;
 
 import com.wang.jmonkey.cloud.common.http.abs.BaseHttp;
 import com.wang.jmonkey.cloud.common.http.result.HttpResult;
+import com.wang.jmonkey.cloud.common.utils.UserUtils;
 import com.wang.jmonkey.cloud.modules.upms.model.dto.MenuDto;
 import com.wang.jmonkey.cloud.modules.upms.model.dto.MenuTreeDto;
 import com.wang.jmonkey.cloud.modules.upms.model.entity.SysMenuEntity;
@@ -71,5 +72,14 @@ public class SysMenuApi extends BaseHttp {
     @GetMapping(value = "/find/{id}")
     public HttpResult<MenuDto> findById(@PathVariable Serializable id ){
         return new HttpResult<>(sysMenuService.selectDtoById(id));
+    }
+
+    /**
+     * 登录用户拥有的菜单
+     * @return
+     */
+    @GetMapping(value="/userMenu")
+    public HttpResult<List<MenuTreeDto>> userMenu(){
+        return new HttpResult<>(sysMenuService.userMenu( UserUtils.getRole(request) ));
     }
 }

@@ -42,4 +42,11 @@ public interface ISysMenuService extends IService<SysMenuEntity> {
      * @return
      */
     boolean deleteMenuById(Serializable id);
+
+    /**
+     * 角色list 拥有的菜单
+     * @param roleCodeList
+     * @return
+     */
+    List<MenuTreeDto> userMenu(List<String> roleCodeList);
 }

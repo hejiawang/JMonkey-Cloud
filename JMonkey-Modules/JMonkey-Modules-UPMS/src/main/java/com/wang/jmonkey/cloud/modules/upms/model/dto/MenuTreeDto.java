@@ -5,6 +5,7 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.wang.jmonkey.cloud.common.model.BaseTreeNode;
 import com.wang.jmonkey.cloud.common.model.enums.MenuMethodEnum;
 import com.wang.jmonkey.cloud.common.model.enums.MenuTypeEnum;
+import com.wang.jmonkey.cloud.common.model.vo.MenuVo;
 import com.wang.jmonkey.cloud.modules.upms.model.entity.SysMenuEntity;
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -88,6 +89,28 @@ public class MenuTreeDto extends BaseTreeNode {
     public static MenuTreeDto converFromEntity( SysMenuEntity menuEntity ){
         MenuTreeDto menuTreeDto = new MenuTreeDto();
         BeanUtils.copyProperties(menuEntity, menuTreeDto);
+        return menuTreeDto;
+    }
+
+    /**
+     * 将vo list装换为dto list
+     * @param menuVoList
+     * @return
+     */
+    public static List<MenuTreeDto> converFromVo(List<MenuVo> menuVoList){
+        List<MenuTreeDto> menuTreeDtoList = new ArrayList<>();
+        menuVoList.forEach(menuVo -> menuTreeDtoList.add(converFromVo(menuVo)) );
+        return menuTreeDtoList;
+    }
+
+    /**
+     * vo
+     * @param menuVo
+     * @return
+     */
+    public static MenuTreeDto converFromVo(MenuVo menuVo){
+        MenuTreeDto menuTreeDto = new MenuTreeDto();
+        BeanUtils.copyProperties(menuVo, menuTreeDto);
         return menuTreeDto;
     }
 }

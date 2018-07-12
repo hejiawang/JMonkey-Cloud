@@ -2,6 +2,7 @@ package com.wang.jmonkey.cloud.modules.upms.service;
 
 import com.baomidou.mybatisplus.service.IService;
 import com.wang.jmonkey.cloud.common.model.vo.MenuVo;
+import com.wang.jmonkey.cloud.modules.upms.model.entity.SysMenuEntity;
 import com.wang.jmonkey.cloud.modules.upms.model.entity.SysRoleMenuEntity;
 
 import java.io.Serializable;
