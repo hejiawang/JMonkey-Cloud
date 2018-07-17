@@ -4,9 +4,9 @@ spring:
     profiles:
         active: dev
     redis:
-        host: 114.116.89.11
-        port: 6379
-        database: 15
+        host: ${JMonkey.redis.host}
+        port: ${JMonkey.redis.port}
+        database: ${JMonkey.redis.database}
 
 server:
     port: 8101

@@ -4,3 +4,7 @@ JMonkey:
         password: 123456
         host: localhost
         port: 8100
+    redis:
+        host: 114.116.89.11
+        port: 6379
+        database: 15
