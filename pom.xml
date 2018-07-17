@@ -48,6 +48,7 @@
     <jasypt.version>1.18</jasypt.version>
     <ttl.version>2.2.0</ttl.version>
     <kaptcha.version>0.0.9</kaptcha.version>
+    <commons-net.version>3.6</commons-net.version>
   </properties>
 
   <!--公共依赖-->

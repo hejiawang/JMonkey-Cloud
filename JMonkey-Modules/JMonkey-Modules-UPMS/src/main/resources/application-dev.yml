@@ -12,4 +12,9 @@ JMonkey:
         host: 114.116.89.11
         port: 6379
         database: 15
+    ftp:
+        host: 114.116.89.11
+        post: 21
+        userName:
+        password:
 
