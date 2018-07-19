@@ -8,7 +8,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.InputStream;
 
 /**
@@ -22,11 +21,11 @@ public class FTPTest {
 
     @Test
     public void treeTest(){
-
         try {
-            InputStream input = new FileInputStream( new File("D:/nihao.txt"));
-            FtpFileUtil.uploadFile("/", "nihao.txt", input);
-        } catch (FileNotFoundException e) {
+            InputStream input = new FileInputStream( new File("D:\\nihao.txt"));
+            FtpFileUtil.uploadFile("/text", "nihao123.txt", input);
+            input.close();
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
