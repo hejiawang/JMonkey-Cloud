@@ -155,6 +155,7 @@ CREATE TABLE `sys_user` (
   `real_name` varchar(64) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '真是姓名',
   `birthday` date DEFAULT NULL COMMENT '出生日期',
   `sex` varchar(20) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '性别 man男 woman女 other其他',
+  `photo` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '用户头像',
   `create_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `create_by` varchar(64) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '创建人',
   `update_date` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
@@ -167,8 +168,8 @@ CREATE TABLE `sys_user` (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES ('25edbaf722584f5ca4ca4674eb586e39', 'sys', '$2a$10$oJsPW9G71ZBypppM9ouGnOJI2qmEr5m./g7aCGyy19oWGVY2./Aga', null, '13333333333', '管理员', '2018-07-02', 'Man', '2018-07-13 13:28:45', null, null, null, null, 'Used');
-INSERT INTO `sys_user` VALUES ('f09f3be336c24b8cb651dff39a418a92', 'admin', '$2a$10$Ni0mYwPi7Jdi9n5deQTQl.0/ai5RL75JVb.73/vgvPRp.Pm8n7.rS', null, '13888888888', '超级管理员', null, 'Other', '2018-07-10 12:46:28', null, null, null, null, 'Used');
+INSERT INTO `sys_user` VALUES ('25edbaf722584f5ca4ca4674eb586e39', 'sys', '$2a$10$oJsPW9G71ZBypppM9ouGnOJI2qmEr5m./g7aCGyy19oWGVY2./Aga', null, '13333333333', '管理员', '2018-07-02', 'Man', null, '2018-07-13 13:28:45', null, null, null, null, 'Used');
+INSERT INTO `sys_user` VALUES ('f09f3be336c24b8cb651dff39a418a92', 'admin', '$2a$10$Ni0mYwPi7Jdi9n5deQTQl.0/ai5RL75JVb.73/vgvPRp.Pm8n7.rS', null, '13888888888', '超级管理员', null, 'Other', null, '2018-07-10 12:46:28', null, null, null, null, 'Used');
 
 -- ----------------------------
 -- Table structure for sys_user_role

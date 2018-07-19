@@ -11,6 +11,7 @@
         <result column="real_name" property="realName" />
         <result column="phone" property="phone" />
         <result column="sex" property="sex" />
+        <result column="photo" property="photo" />
         <result column="birthday" property="birthday" />
         <result column="create_date" property="createDate" />
         <result column="create_by" property="createBy" />
@@ -20,21 +21,7 @@
         <result column="delete_flag" property="deleteFlag" />
     </resultMap>
 
-    <resultMap id="UserVOResultMap" type="com.wang.jmonkey.cloud.common.model.vo.UserVo">
-        <id column="id" property="id" />
-        <result column="username" property="username" />
-        <result column="password" property="password" />
-        <result column="salt" property="salt" />
-        <result column="real_name" property="realName" />
-        <result column="phone" property="phone" />
-        <result column="sex" property="sex" />
-        <result column="birthday" property="birthday" />
-        <result column="create_date" property="createDate" />
-        <result column="create_by" property="createBy" />
-        <result column="update_date" property="updateDate" />
-        <result column="update_by" property="updateBy" />
-        <result column="remark" property="remark" />
-        <result column="delete_flag" property="deleteFlag" />
+    <resultMap id="UserVOResultMap" type="com.wang.jmonkey.cloud.common.model.vo.UserVo" extends="BaseResultMap">
         <collection property="roleList" ofType="com.wang.jmonkey.cloud.common.model.vo.RoleVo">
             <id column="role_id" property="id" />
             <result column="role_name" property="name" />

@@ -23,7 +23,7 @@ public class FTPTest {
     public void treeTest(){
         try {
             InputStream input = new FileInputStream( new File("D:\\nihao.txt"));
-            FtpFileUtil.uploadFile("/text", "nihao123.txt", input);
+            FtpFileUtil.uploadFile("ewe/test/1/2", "nihao1.txt", input);
             input.close();
         } catch (Exception e) {
             e.printStackTrace();

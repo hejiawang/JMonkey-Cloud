@@ -17,4 +17,7 @@ JMonkey:
         post: 21
         userName: Administrator
         password: KTdev2018
+    file:
+        user:
+            photo: user/photo
 

@@ -5,13 +5,21 @@ import com.wang.jmonkey.cloud.common.http.abs.BaseHttp;
 import com.wang.jmonkey.cloud.common.http.result.HttpPageResult;
 import com.wang.jmonkey.cloud.common.http.result.HttpResult;
 import com.wang.jmonkey.cloud.common.model.vo.UserVo;
+import com.wang.jmonkey.cloud.common.utils.UUIDUtil;
+import com.wang.jmonkey.cloud.common.utils.file.FtpFileUtil;
 import com.wang.jmonkey.cloud.modules.upms.model.dto.UserDto;
 import com.wang.jmonkey.cloud.modules.upms.model.dto.UserInfo;
 import com.wang.jmonkey.cloud.modules.upms.model.entity.SysUserEntity;
 import com.wang.jmonkey.cloud.modules.upms.service.ISysUserService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
 
 /**
@@ -19,12 +27,16 @@ import java.io.Serializable;
  * @Auther: HeJiawang
  * @Date: 2018/6/23
  */
+@Slf4j
 @RestController
 @RequestMapping("/user")
 public class SysUserApi extends BaseHttp {
 
     @Resource
     private ISysUserService sysUserService;
+
+    @Value("${JMonkey.file.user.photo}")
+    private String userPhotoPath;
 
     /**
      * 用户信息列表
@@ -125,5 +137,26 @@ public class SysUserApi extends BaseHttp {
     @GetMapping("/info")
     public HttpResult<UserInfo> info( UserVo userVo ){
         return new HttpResult<>( sysUserService.info(userVo) );
+    }
+
+    /**
+     * 上传用户头像
+     * @param uploadFile
+     * @return
+     */
+    @PostMapping("/uploadPhoto")
+    public HttpResult<String> uploadPhoto( @RequestParam(value = "file") MultipartFile uploadFile ){
+        HttpResult<String> result = new HttpResult<>();
+        try {
+            String fileName = UUIDUtil.value() + "_" + uploadFile.getOriginalFilename();
+            InputStream is = uploadFile.getInputStream();
+
+            if( FtpFileUtil.uploadFile(userPhotoPath, fileName, is) ) result.setResult( userPhotoPath + "/" + fileName);
+            else result.setIsSuccess(false);
+        } catch (IOException e) {
+            log.error("uploadPhoto error : ", e);
+            result.setIsSuccess(false);
+        }
+        return result;
     }
 }

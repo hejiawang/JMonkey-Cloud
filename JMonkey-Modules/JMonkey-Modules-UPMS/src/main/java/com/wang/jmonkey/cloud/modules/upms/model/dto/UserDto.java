@@ -4,7 +4,6 @@ import com.wang.jmonkey.cloud.modules.upms.model.entity.SysRoleEntity;
 import com.wang.jmonkey.cloud.modules.upms.model.entity.SysUserEntity;
 import lombok.Data;
 import lombok.experimental.Accessors;
-import org.apache.catalina.User;
 import org.springframework.beans.BeanUtils;
 
 import java.util.List;

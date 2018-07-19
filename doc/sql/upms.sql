@@ -7,6 +7,7 @@ CREATE TABLE `sys_user` (
   `real_name` varchar(64) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '真是姓名',
   `phone` varchar(20) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '手机号码',
   `sex` varchar(20) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '性别 man男 woman女 other其他',
+  `photo` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '用户头像',
   `create_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
 	`create_by` varchar(64) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '创建人',
   `update_date` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',

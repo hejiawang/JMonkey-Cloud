@@ -65,6 +65,11 @@ public class SysUserEntity extends BaseEntity<SysUserEntity> {
      */
     private Date birthday;
 
+    /**
+     * 用户头像
+     */
+    private String photo;
+
     @Override
     protected Serializable pkVal() {
         return this.id;

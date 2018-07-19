@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Arrays;
 
 /**
  * @Description: FTP操作文件工具类
@@ -17,7 +18,6 @@ import java.io.InputStream;
 @Slf4j
 @Component
 public class FtpFileUtil {
-    //TODO FTP上传方式可以优化，将FTP连接放入连接池中，避免每次上传下载文件时都新创建连接
 
     /**
      * 初始化ftp连接信息
@@ -56,8 +56,12 @@ public class FtpFileUtil {
         if( null == ftp ) return result;
 
         try {
-            ftp.makeDirectory(ftpFilePath);
-            ftp.changeWorkingDirectory(ftpFilePath);
+            //解决ftp不能一次性创建多层目录问题
+            String[] ftpPath = ftpFilePath.split("/");
+            for( String path : ftpPath ){
+                ftp.makeDirectory(path);
+                ftp.changeWorkingDirectory(path);
+            }
 
             ftp.setFileType(FTPClient.BINARY_FILE_TYPE);
             ftp.enterLocalPassiveMode();
@@ -91,22 +95,22 @@ public class FtpFileUtil {
         public static String userName;
         public static String password;
 
-        @Value("${JMonkey.ftp.host}")
+        @Value("${JMonkey.ftp.host:127.0.0.1}")
         public void setHost( String host ){
             this.host = host;
         }
 
-        @Value("${JMonkey.ftp.post}")
+        @Value("${JMonkey.ftp.post:21}")
         public void setPost( int post ){
             this.post = post;
         }
 
-        @Value("${JMonkey.ftp.userName}")
+        @Value("${JMonkey.ftp.userName:name}")
         public void setUserName( String userName ){
             this.userName = userName;
         }
 
-        @Value("${JMonkey.ftp.password}")
+        @Value("${JMonkey.ftp.password:password}")
         public void setPassword( String password ){
             this.password = password;
         }

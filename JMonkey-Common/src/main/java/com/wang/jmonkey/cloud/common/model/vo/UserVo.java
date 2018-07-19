@@ -61,6 +61,11 @@ public class UserVo  extends BaseVo {
      */
     private Date birthday;
 
+    /**
+     * 用户头像
+     */
+    private String photo;
+
     private List<RoleVo> roleList = new ArrayList<>();
 
 }
