@@ -85,7 +85,17 @@ public class SysUserApi extends BaseHttp {
      */
     @GetMapping(value = "/restPasswsord/{id}")
     public HttpResult<Boolean> restPasswsord( @PathVariable String id ){
-        return new HttpResult<>(sysUserService.restPasswsord(id));
+        return new HttpResult<>(sysUserService.restPasswsord(id, "123456"));
+    }
+
+    /**
+     * 修改密码
+     * @param userEntity 用户信息
+     * @return
+     */
+    @PutMapping(value = "/modifyPassword")
+    public HttpResult<Boolean> modifyPassword( @RequestBody SysUserEntity userEntity ){
+        return new HttpResult<>(sysUserService.restPasswsord(userEntity.getId(), userEntity.getPassword()));
     }
 
     /**
@@ -106,6 +116,16 @@ public class SysUserApi extends BaseHttp {
     @PostMapping(value = "/checkUserName")
     public HttpResult<Boolean> checkUserName( @RequestBody SysUserEntity userEntity ){
         return new HttpResult<>(sysUserService.checkUserName(userEntity));
+    }
+
+    /**
+     * 校验用户原始密码是否正确
+     * @param userEntity userEntity
+     * @return true 原始密码不正确
+     */
+    @PostMapping(value = "/checkPassword")
+    public HttpResult<Boolean> checkPassword( @RequestBody SysUserEntity userEntity ){
+        return new HttpResult<>(sysUserService.checkPassword(userEntity));
     }
 
     /**

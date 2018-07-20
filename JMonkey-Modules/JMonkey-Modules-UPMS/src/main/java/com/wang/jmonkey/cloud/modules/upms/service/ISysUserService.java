@@ -31,9 +31,10 @@ public interface ISysUserService extends IService<SysUserEntity> {
     /**
      * 重置用户密码为123456
      * @param id 用户id
+     * @param password 新密码
      * @return
      */
-    Boolean restPasswsord(String id);
+    Boolean restPasswsord(String id, String password);
 
     /**
      * 分页查询用户列表数据
@@ -58,6 +59,13 @@ public interface ISysUserService extends IService<SysUserEntity> {
     Boolean checkUserName(SysUserEntity userEntity);
 
     /**
+     * 校验用户原始密码是否正确
+     * @param userEntity userEntity
+     * @return
+     */
+    Boolean checkPassword(SysUserEntity userEntity);
+
+    /**
      * 根据用户名称获取用户信息
      * @param username 用户名称
      * @return
@@ -77,4 +85,5 @@ public interface ISysUserService extends IService<SysUserEntity> {
      * @return 用户登录信息
      */
     UserInfo info(UserVo userVo);
+
 }

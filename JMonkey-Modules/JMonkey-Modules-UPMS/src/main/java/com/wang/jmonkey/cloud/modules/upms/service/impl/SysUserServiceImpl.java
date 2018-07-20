@@ -83,11 +83,12 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUserEntity
     /**
      * 重置用户密码为123456
      * @param id 用户id
+     * @param password 新密码
      * @return
      */
     @Override
-    public Boolean restPasswsord(String id) {
-        String pw = ENCODER.encode( "123456" );
+    public Boolean restPasswsord(String id, String password) {
+        String pw = ENCODER.encode( password );
         return this.updateById( new SysUserEntity().setId(id).setPassword(pw) );
     }
 
@@ -153,6 +154,19 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUserEntity
     @Override
     public Boolean checkUserName(SysUserEntity userEntity) {
         return userMapper.checkUserName(userEntity) > 0;
+    }
+
+    /**
+     * 校验用户原始密码是否正确
+     * @param userEntity userEntity
+     * @return
+     */
+    @Override
+    public Boolean checkPassword(SysUserEntity userEntity) {
+        String pw = ENCODER.encode( userEntity.getPassword() );
+        EntityWrapper wrapper = new EntityWrapper( userEntity.setPassword(pw) );
+        SysUserEntity sysUserEntity = this.selectOne(wrapper);
+        return sysUserEntity  == null;
     }
 
     /**
