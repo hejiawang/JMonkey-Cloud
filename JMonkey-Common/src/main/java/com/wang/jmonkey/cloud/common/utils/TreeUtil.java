@@ -24,7 +24,7 @@ public class TreeUtil {
         List<T> trees = new ArrayList<>();
 
         treeNodes.forEach( treeNode -> {
-            if ( root == treeNode.getParentId() ) trees.add(treeNode);
+            if ( root == treeNode.getParentId() || StringUtils.equals("", treeNode.getParentId()) ) trees.add(treeNode);
             treeNodes.forEach(it -> { if ( StringUtils.equals(it.getParentId(), treeNode.getId()) ) treeNode.addChildren(it); });
         });
 
