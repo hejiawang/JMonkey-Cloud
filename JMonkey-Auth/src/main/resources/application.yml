@@ -73,4 +73,6 @@ JMonkey:
         clientId: JMonkey_client_id
         clientSecret: JMonkey_client_secret
         scope: server
+    token:
+        expiresIn: 3600 # token过期时间，默认10小时，单位秒，60 * 60（一小时）
 
