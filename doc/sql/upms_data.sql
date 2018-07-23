@@ -192,3 +192,19 @@ CREATE TABLE `sys_user_role` (
 -- ----------------------------
 INSERT INTO `sys_user_role` VALUES ('25edbaf722584f5ca4ca4674eb586e39', '34e0749f68e348dabd7ea7577f816657', '2018-07-13 13:28:45', null, null, null, null, 'Used');
 INSERT INTO `sys_user_role` VALUES ('f09f3be336c24b8cb651dff39a418a92', 'af045b96b3464049ac6c885c4b2c96a8', '2018-07-10 12:46:28', null, null, null, null, 'Used');
+
+DROP TABLE IF EXISTS `sys_dept`;
+CREATE TABLE `sys_dept` (
+  `id` varchar(64) COLLATE utf8mb4_bin NOT NULL COMMENT '主键ID',
+	`parent_id` varchar(64) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '上级部门ID,null为顶级部门',
+  `name` varchar(64) COLLATE utf8mb4_bin NOT NULL COMMENT '部门名称',
+  `code` varchar(64) COLLATE utf8mb4_bin NOT NULL COMMENT '部门编码',
+	`sort` int(11) DEFAULT NULL COMMENT '排序值',
+  `create_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `create_by` varchar(64) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '创建人',
+  `update_date` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
+  `update_by` varchar(64) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '修改人',
+  `remark` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '备注',
+  `delete_flag` varchar(10) COLLATE utf8mb4_bin DEFAULT 'Used' COMMENT 'used启用 disable禁用 delete删除',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin ROW_FORMAT=DYNAMIC;

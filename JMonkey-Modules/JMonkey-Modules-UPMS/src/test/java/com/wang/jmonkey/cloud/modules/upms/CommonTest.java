@@ -19,4 +19,11 @@ public class CommonTest {
         String str = "";
         System.out.println(null == str || StringUtils.equals("", str));
     }
+
+    @Test
+    public void strFormtTest(){
+        String str = String.format("%sApi", "SysDepart");
+        System.out.println(str);
+
+    }
 }
