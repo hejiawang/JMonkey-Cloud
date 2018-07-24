@@ -39,6 +39,7 @@ mybatis-plus:
         logic-delete-value: concat('','Delete','')  #逻辑删除配置
         logic-not-delete-value: concat('','Used','')
         sql-injector: com.baomidou.mybatisplus.mapper.LogicSqlInjector #自定义SQL注入器
+        metaObjectHandler: com.wang.jmonkey.cloud.common.component.handler.DataMetaObjectHandler
     configuration:
         map-underscore-to-camel-case: true
         cache-enabled: false

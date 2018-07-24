@@ -77,12 +77,19 @@ public class UserUtils {
 
     /**
      * 设置用户信息
-     *
      * @param username 用户名
      */
     public static void setUser(String username) {
         THREAD_LOCAL_USER.set(username);
         MDC.put(KEY_USER, username);
+    }
+
+    /**
+     * 从threadlocal 获取用户名
+     * @return 用户名
+     */
+    public static String getUser() {
+        return THREAD_LOCAL_USER.get();
     }
 
     public static void clearAllUserInfo() {

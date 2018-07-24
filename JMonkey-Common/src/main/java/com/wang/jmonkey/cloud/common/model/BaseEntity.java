@@ -3,7 +3,9 @@ package com.wang.jmonkey.cloud.common.model;
 import com.alibaba.fastjson.annotation.JSONField;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableLogic;
+import com.baomidou.mybatisplus.enums.FieldFill;
 import com.wang.jmonkey.cloud.common.model.enums.RecordStatusEnum;
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -27,6 +29,7 @@ public abstract class BaseEntity<T extends BaseEntity> extends Model<T> {
     /**
      * 创建人
      */
+    @TableField(fill = FieldFill.INSERT)
     protected String createBy;
 
     /**
@@ -37,6 +40,7 @@ public abstract class BaseEntity<T extends BaseEntity> extends Model<T> {
     /**
      * 最后修改人
      */
+    @TableField(fill = FieldFill.UPDATE)
     protected String updateBy;
 
     /**
