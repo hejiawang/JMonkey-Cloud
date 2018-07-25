@@ -2,6 +2,7 @@ package com.wang.jmonkey.cloud.modules.upms.api;
 
 import com.wang.jmonkey.cloud.common.http.abs.BaseHttp;
 import com.wang.jmonkey.cloud.common.http.result.HttpResult;
+import com.wang.jmonkey.cloud.modules.upms.model.dto.DeptDto;
 import com.wang.jmonkey.cloud.modules.upms.model.dto.DeptTreeDto;
 import com.wang.jmonkey.cloud.modules.upms.model.entity.SysDeptEntity;
 import com.wang.jmonkey.cloud.modules.upms.service.ISysDeptService;
@@ -68,8 +69,8 @@ public class SysDeptApi extends BaseHttp {
      * @return
      */
     @GetMapping(value = "/find/{id}")
-    public HttpResult<SysDeptEntity> findById(@PathVariable Serializable id ){
-        return new HttpResult<>(service.selectById(id));
+    public HttpResult<DeptDto> findById(@PathVariable Serializable id ){
+        return new HttpResult<>(service.selectDtoById(id));
     }
 
 }

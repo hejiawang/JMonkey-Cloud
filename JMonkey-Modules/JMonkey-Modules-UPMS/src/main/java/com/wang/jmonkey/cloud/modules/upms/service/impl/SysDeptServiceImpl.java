@@ -4,11 +4,14 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.wang.jmonkey.cloud.common.utils.TreeUtil;
 import com.wang.jmonkey.cloud.modules.upms.mapper.SysDeptMapper;
+import com.wang.jmonkey.cloud.modules.upms.model.dto.DeptDto;
 import com.wang.jmonkey.cloud.modules.upms.model.dto.DeptTreeDto;
 import com.wang.jmonkey.cloud.modules.upms.model.entity.SysDeptEntity;
 import com.wang.jmonkey.cloud.modules.upms.service.ISysDeptService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -18,6 +21,12 @@ import java.util.List;
  */
 @Service
 public class SysDeptServiceImpl extends ServiceImpl<SysDeptMapper, SysDeptEntity> implements ISysDeptService {
+
+    /**
+     * dept mapper
+     */
+    @Autowired
+    private SysDeptMapper deptMapper;
 
     /**
      * 获取树形部门信息数据
@@ -31,5 +40,15 @@ public class SysDeptServiceImpl extends ServiceImpl<SysDeptMapper, SysDeptEntity
         wrapper.orderBy( "sort", true );
 
         return TreeUtil.bulid( DeptTreeDto.converFromEntity( this.selectList( wrapper ) ), null );
+    }
+
+    /**
+     * 根据部门ID获取部门Dto信息
+     * @param id 部门ID
+     * @return
+     */
+    @Override
+    public DeptDto selectDtoById(Serializable id) {
+        return deptMapper.selectDtoById(id);
     }
 }

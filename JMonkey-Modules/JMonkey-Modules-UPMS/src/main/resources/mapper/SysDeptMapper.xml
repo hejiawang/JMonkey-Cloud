@@ -16,4 +16,16 @@
         <result column="delete_flag" property="deleteFlag" />
     </resultMap>
 
+    <resultMap id="DtoResultMap" type="com.wang.jmonkey.cloud.modules.upms.model.dto.DeptDto" extends="BaseResultMap">
+        <result column="parent_name" property="parentName" />
+    </resultMap>
+
+    <select id="selectDtoById" resultMap="DtoResultMap">
+        SELECT
+            dept.*, dept_p.`name` AS parent_name
+        FROM sys_dept dept
+        LEFT JOIN sys_dept dept_p ON dept.parent_id = dept_p.id AND dept_p.delete_flag = 'Used'
+        WHERE dept.delete_flag = 'Used' AND dept.id = #{id}
+    </select>
+
 </mapper>

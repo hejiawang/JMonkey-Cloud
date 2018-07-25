@@ -1,9 +1,11 @@
 package com.wang.jmonkey.cloud.modules.upms.service;
 
 import com.baomidou.mybatisplus.service.IService;
+import com.wang.jmonkey.cloud.modules.upms.model.dto.DeptDto;
 import com.wang.jmonkey.cloud.modules.upms.model.dto.DeptTreeDto;
 import com.wang.jmonkey.cloud.modules.upms.model.entity.SysDeptEntity;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -18,4 +20,11 @@ public interface ISysDeptService extends IService<SysDeptEntity> {
      * @return
      */
     List<DeptTreeDto> treeList();
+
+    /**
+     * 根据部门ID获取部门Dto信息
+     * @param id 部门ID
+     * @return
+     */
+    DeptDto selectDtoById(Serializable id);
 }
