@@ -20,6 +20,7 @@ import javax.annotation.Resource;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @Description: 用户管理 api
@@ -46,6 +47,15 @@ public class SysUserApi extends BaseHttp {
     @GetMapping(value = "/list")
     public HttpPageResult<UserDto> list(Page<SysUserEntity> page, SysUserEntity userEntity) {
         return new HttpPageResult<>( sysUserService.selectPage( page, userEntity ) );
+    }
+
+    /**
+     * 获取所有用户信息
+     * @return
+     */
+    @GetMapping(value = "/listAll")
+    public HttpResult<List<UserDto>> listAll(){
+        return new HttpResult<>(sysUserService.selectAll());
     }
 
     /**

@@ -7,6 +7,8 @@ import com.wang.jmonkey.cloud.modules.upms.model.dto.UserDto;
 import com.wang.jmonkey.cloud.modules.upms.model.dto.UserInfo;
 import com.wang.jmonkey.cloud.modules.upms.model.entity.SysUserEntity;
 
+import java.util.List;
+
 /**
  * @Description: 用户信息service
  * @Auther: HeJiawang
@@ -43,6 +45,12 @@ public interface ISysUserService extends IService<SysUserEntity> {
      * @return 用户分页信息
      */
     Page<UserDto> selectPage(Page<SysUserEntity> page, SysUserEntity userEntity);
+
+    /**
+     * 获取所有用户信息
+     * @return
+     */
+    List<UserDto> selectAll();
 
     /**
      * 查找用户信息

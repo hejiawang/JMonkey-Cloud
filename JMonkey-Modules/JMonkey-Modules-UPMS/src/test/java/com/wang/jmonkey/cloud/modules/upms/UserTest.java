@@ -2,6 +2,7 @@ package com.wang.jmonkey.cloud.modules.upms;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.wang.jmonkey.cloud.common.model.enums.SexEnum;
+import com.wang.jmonkey.cloud.modules.upms.model.dto.UserDto;
 import com.wang.jmonkey.cloud.modules.upms.model.entity.SysUserEntity;
 import com.wang.jmonkey.cloud.modules.upms.service.ISysUserService;
 import junit.framework.TestCase;
@@ -10,6 +11,8 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import java.util.List;
 
 /**
  * @Description:
@@ -34,6 +37,12 @@ public class UserTest extends TestCase {
     public void checkUserName(){
         Boolean isHave = userService.checkUserName( new SysUserEntity().setUsername("test1") );
         System.out.printf( isHave.toString() );
+    }
+
+    @Test
+    public void selectAllTest(){
+        List<UserDto> userDtoList = userService.selectAll();
+        System.out.println(userDtoList.size());
     }
 
 }

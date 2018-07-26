@@ -2,8 +2,11 @@ package com.wang.jmonkey.cloud.modules.upms.mapper;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.wang.jmonkey.cloud.common.model.vo.UserVo;
+import com.wang.jmonkey.cloud.modules.upms.model.dto.UserDto;
 import com.wang.jmonkey.cloud.modules.upms.model.entity.SysUserEntity;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * @Description: 用户信息mapper
@@ -25,4 +28,11 @@ public interface SysUserMapper extends BaseMapper<SysUserEntity> {
      * @return 用户vo
      */
     UserVo findUserVoByUsername(@Param("username") String username);
+
+    /**
+     * 获取所有用户信息
+     * @return
+     */
+    List<UserDto> selectAll();
+
 }

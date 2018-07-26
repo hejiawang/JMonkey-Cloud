@@ -122,6 +122,15 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUserEntity
     }
 
     /**
+     * 获取所有用户信息
+     * @return
+     */
+    @Override
+    public List<UserDto> selectAll() {
+        return userMapper.selectAll();
+    }
+
+    /**
      * 删除用户信息，并删除用户的角色信息
      * @param id
      * @return
@@ -203,6 +212,8 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUserEntity
         return new UserInfo().setUser(this.findByUsername(userVo.getUsername()))
                 .setRoleCodeList(roleCodeList).setPermissionList(permissionList);
     }
+
+
 
     private List<String> infoRoleCode( UserVo userVo ){
         List<String> roleCodeList = new ArrayList<>();
