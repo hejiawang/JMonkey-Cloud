@@ -188,4 +188,15 @@ public class SysUserApi extends BaseHttp {
         }
         return result;
     }
+
+    /**
+     * 导入用户信息
+     * @return
+     */
+    @PostMapping("/importUser")
+    public HttpResult<Void> importUser(  @RequestParam(value = "file" ) MultipartFile multipartFile ){
+        HttpResult<Void> result = new HttpResult<>();
+        System.out.println( multipartFile.getOriginalFilename() );
+        return result;
+    }
 }
