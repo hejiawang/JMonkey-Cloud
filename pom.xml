@@ -49,6 +49,7 @@
     <ttl.version>2.2.0</ttl.version>
     <kaptcha.version>0.0.9</kaptcha.version>
     <commons-net.version>3.6</commons-net.version>
+    <poi.version>3.17</poi.version>
   </properties>
 
   <!--公共依赖-->

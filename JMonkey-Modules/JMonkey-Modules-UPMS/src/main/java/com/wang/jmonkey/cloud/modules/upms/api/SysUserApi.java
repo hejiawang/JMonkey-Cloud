@@ -13,6 +13,7 @@ import com.wang.jmonkey.cloud.modules.upms.model.entity.SysUserEntity;
 import com.wang.jmonkey.cloud.modules.upms.service.ISysUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -64,7 +65,7 @@ public class SysUserApi extends BaseHttp {
      * @return
      */
     @PostMapping(value = "/save")
-    public HttpResult<Boolean> save( @RequestBody UserDto UserDto ){
+    public HttpResult<Boolean> save( @RequestBody @Validated UserDto UserDto ){
         return new HttpResult<>(sysUserService.insert(UserDto));
     }
 

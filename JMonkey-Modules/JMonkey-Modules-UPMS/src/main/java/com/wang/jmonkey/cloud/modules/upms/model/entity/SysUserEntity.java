@@ -9,6 +9,8 @@ import com.wang.jmonkey.cloud.common.model.BaseEntity;
 import com.wang.jmonkey.cloud.common.model.enums.SexEnum;
 import lombok.Data;
 import lombok.experimental.Accessors;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -32,6 +34,8 @@ public class SysUserEntity extends BaseEntity<SysUserEntity> {
     /**
      * 用户名
      */
+    @NotEmpty(message = "用户名不能为空")
+    @Length(max = 200, message = "用户名长度为1-200")
     private String username;
 
     /**
