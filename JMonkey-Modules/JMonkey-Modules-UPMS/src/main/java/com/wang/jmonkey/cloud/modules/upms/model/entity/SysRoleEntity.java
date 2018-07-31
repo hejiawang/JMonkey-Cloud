@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.enums.IdType;
 import com.wang.jmonkey.cloud.common.model.BaseEntity;
 import lombok.Data;
 import lombok.experimental.Accessors;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import java.io.Serializable;
 
@@ -28,11 +30,15 @@ public class SysRoleEntity extends BaseEntity<SysRoleEntity> {
     /**
      * 角色名
      */
+    @NotEmpty(message = "角色名不能为空")
+    @Length(max = 20, message = "角色名长度不能超过20")
     private String name;
 
     /**
      * 角色编号
      */
+    @NotEmpty(message = "角色编号不能为空")
+    @Length(max = 20, message = "角色编号长度不能超过20")
     private String code;
 
     @Override

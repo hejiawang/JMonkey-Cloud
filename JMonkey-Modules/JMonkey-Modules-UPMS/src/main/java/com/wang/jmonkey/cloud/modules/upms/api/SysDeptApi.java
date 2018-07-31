@@ -6,6 +6,7 @@ import com.wang.jmonkey.cloud.modules.upms.model.dto.DeptDto;
 import com.wang.jmonkey.cloud.modules.upms.model.dto.DeptTreeDto;
 import com.wang.jmonkey.cloud.modules.upms.model.entity.SysDeptEntity;
 import com.wang.jmonkey.cloud.modules.upms.service.ISysDeptService;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -39,7 +40,7 @@ public class SysDeptApi extends BaseHttp {
      * @return
      */
     @PostMapping(value = "/save")
-    public HttpResult<Boolean> save( @RequestBody SysDeptEntity entity ){
+    public HttpResult<Boolean> save( @RequestBody @Validated SysDeptEntity entity ){
         return new HttpResult<>(service.insert(entity));
     }
 
@@ -49,7 +50,7 @@ public class SysDeptApi extends BaseHttp {
      * @return
      */
     @PutMapping(value = "/modify")
-    public HttpResult<Boolean> modify( @RequestBody SysDeptEntity entity ){
+    public HttpResult<Boolean> modify( @RequestBody @Validated SysDeptEntity entity ){
         return new HttpResult<>(service.updateById(entity));
     }
 

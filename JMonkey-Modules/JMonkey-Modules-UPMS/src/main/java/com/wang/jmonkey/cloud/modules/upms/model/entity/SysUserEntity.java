@@ -35,7 +35,7 @@ public class SysUserEntity extends BaseEntity<SysUserEntity> {
      * 用户名
      */
     @NotEmpty(message = "用户名不能为空")
-    @Length(max = 200, message = "用户名长度为1-200")
+    @Length(min = 3, max = 20, message = "用户名长度为3-20")
     private String username;
 
     /**
@@ -51,11 +51,14 @@ public class SysUserEntity extends BaseEntity<SysUserEntity> {
     /**
      * 用户真是姓名
      */
+    @NotEmpty(message = "真实姓名不能为空")
+    @Length(max = 20, message = "真实姓名长度为不能超过20")
     private String realName;
 
     /**
      * 手机号码
      */
+    @NotEmpty(message = "手机号码不能为空")
     private String phone;
 
     /**

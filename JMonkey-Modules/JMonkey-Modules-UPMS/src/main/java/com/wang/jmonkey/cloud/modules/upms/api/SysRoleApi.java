@@ -7,6 +7,7 @@ import com.wang.jmonkey.cloud.common.http.result.HttpPageResult;
 import com.wang.jmonkey.cloud.common.http.result.HttpResult;
 import com.wang.jmonkey.cloud.modules.upms.model.entity.SysRoleEntity;
 import com.wang.jmonkey.cloud.modules.upms.service.ISysRoleService;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -51,7 +52,7 @@ public class SysRoleApi extends BaseHttp {
      * @return
      */
     @PostMapping(value = "/save")
-    public HttpResult<Boolean> save( @RequestBody SysRoleEntity roleEntity ){
+    public HttpResult<Boolean> save( @RequestBody @Validated SysRoleEntity roleEntity ){
         return new HttpResult<>(sysRoleService.insert(roleEntity));
     }
 
@@ -61,7 +62,7 @@ public class SysRoleApi extends BaseHttp {
      * @return
      */
     @PutMapping(value = "/modify")
-    public HttpResult<Boolean> modify( @RequestBody SysRoleEntity roleEntity ){
+    public HttpResult<Boolean> modify( @RequestBody @Validated SysRoleEntity roleEntity ){
         return new HttpResult<>(sysRoleService.updateById(roleEntity));
     }
 

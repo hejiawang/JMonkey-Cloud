@@ -7,6 +7,7 @@ import com.wang.jmonkey.cloud.modules.upms.model.dto.MenuDto;
 import com.wang.jmonkey.cloud.modules.upms.model.dto.MenuTreeDto;
 import com.wang.jmonkey.cloud.modules.upms.model.entity.SysMenuEntity;
 import com.wang.jmonkey.cloud.modules.upms.service.ISysMenuService;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -40,7 +41,7 @@ public class SysMenuApi extends BaseHttp {
      * @return
      */
     @PostMapping(value = "/save")
-    public HttpResult<Boolean> save( @RequestBody SysMenuEntity menuEntity ){
+    public HttpResult<Boolean> save( @RequestBody @Validated SysMenuEntity menuEntity ){
         return new HttpResult<>( sysMenuService.insert(menuEntity) );
     }
 
@@ -50,7 +51,7 @@ public class SysMenuApi extends BaseHttp {
      * @return
      */
     @PutMapping(value = "/modify")
-    public HttpResult<Boolean> modify( @RequestBody SysMenuEntity menuEntity ){
+    public HttpResult<Boolean> modify( @RequestBody @Validated SysMenuEntity menuEntity ){
         return new HttpResult<>( sysMenuService.modifyById(menuEntity) );
     }
 

@@ -12,6 +12,7 @@ import com.wang.jmonkey.cloud.modules.upms.model.dto.UserInfo;
 import com.wang.jmonkey.cloud.modules.upms.model.entity.SysUserEntity;
 import com.wang.jmonkey.cloud.modules.upms.service.ISysUserService;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -75,7 +76,7 @@ public class SysUserApi extends BaseHttp {
      * @return
      */
     @PutMapping(value = "/modify")
-    public HttpResult<Boolean> modify( @RequestBody UserDto UserDto ){
+    public HttpResult<Boolean> modify( @RequestBody @Validated UserDto UserDto ){
         return new HttpResult<>(sysUserService.updateById(UserDto));
     }
 
@@ -145,7 +146,7 @@ public class SysUserApi extends BaseHttp {
      * @return
      */
     @GetMapping(value = "/findByUsername")
-    public HttpResult<SysUserEntity> findByUsername( String username ){
+    public HttpResult<SysUserEntity> findByUsername( @NotEmpty(message = "用户名不能为空") String username ){
         return new HttpResult<>( sysUserService.findByUsername(username) );
     }
 
