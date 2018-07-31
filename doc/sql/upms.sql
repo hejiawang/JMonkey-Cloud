@@ -95,3 +95,16 @@ CREATE TABLE `sys_dept` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin ROW_FORMAT=DYNAMIC COMMENT='部门信息';
 
+DROP TABLE IF EXISTS `sys_user_dept`;
+CREATE TABLE `sys_user_dept` (
+  `user_id` varchar(64) NOT NULL COMMENT '用户ID',
+  `dept_id` varchar(64) NOT NULL COMMENT '部门ID',
+  `create_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+	`create_by` varchar(64) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '创建人',
+  `update_date` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
+	`update_by` varchar(64) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '修改人',
+	`remark` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '备注',
+  `delete_flag` varchar(10) COLLATE utf8mb4_bin DEFAULT 'Used' COMMENT 'used启用 disable禁用 delete删除',
+  PRIMARY KEY (`user_id`,`dept_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='用户部门表';
+

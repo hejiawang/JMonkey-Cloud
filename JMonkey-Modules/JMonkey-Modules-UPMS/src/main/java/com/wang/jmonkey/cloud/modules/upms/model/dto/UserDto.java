@@ -1,5 +1,6 @@
 package com.wang.jmonkey.cloud.modules.upms.model.dto;
 
+import com.wang.jmonkey.cloud.modules.upms.model.entity.SysDeptEntity;
 import com.wang.jmonkey.cloud.modules.upms.model.entity.SysRoleEntity;
 import com.wang.jmonkey.cloud.modules.upms.model.entity.SysUserEntity;
 import lombok.Data;
@@ -20,6 +21,10 @@ public class UserDto extends SysUserEntity {
     private List<String> roleIdList;
 
     private List<SysRoleEntity> roleList;
+
+    private List<String> deptIdList;
+
+    private List<SysDeptEntity> deptList;
 
     /**
      * 将dto转化为entity
