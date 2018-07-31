@@ -35,6 +35,11 @@
             <result column="role_name" property="name" />
             <result column="role_code" property="code" />
         </collection>
+        <collection property="deptList" ofType="com.wang.jmonkey.cloud.modules.upms.model.entity.SysDeptEntity">
+            <id column="dept_id" property="id" />
+            <result column="dept_name" property="name" />
+            <result column="dept_code" property="code" />
+        </collection>
     </resultMap>
 
     <select id="checkUserName" resultType="java.lang.Integer">
@@ -61,11 +66,28 @@
     <select id="selectAll" resultMap="UserDTOResultMap">
         SELECT
             u.*,
-            r.id AS role_id, r.name AS role_name, r.code AS role_code
+            r.id AS role_id, r.name AS role_name, r.code AS role_code,
+            d.id AS dept_id, d.name AS dept_name, d.code AS dept_code
         FROM sys_user u
         LEFT JOIN sys_user_role ur ON ur.user_id = u.id AND ur.delete_flag = 'Used'
         LEFT JOIN sys_role r ON r.id = ur.role_id AND r.delete_flag = 'Used'
+        LEFT JOIN sys_user_dept ud ON ud.user_id = u.id AND ud.delete_flag = 'Used'
+        LEFT JOIN sys_dept d ON d.id = ud.dept_id AND d.delete_flag = 'Used'
         WHERE u.delete_flag = 'Used'
+    </select>
+
+    <select id="findDtoById" resultMap="UserDTOResultMap">
+        SELECT
+            u.*,
+            r.id AS role_id, r.name AS role_name, r.code AS role_code,
+            d.id AS dept_id, d.name AS dept_name, d.code AS dept_code
+        FROM sys_user u
+        LEFT JOIN sys_user_role ur ON ur.user_id = u.id AND ur.delete_flag = 'Used'
+        LEFT JOIN sys_role r ON r.id = ur.role_id AND r.delete_flag = 'Used'
+        LEFT JOIN sys_user_dept ud ON ud.user_id = u.id AND ud.delete_flag = 'Used'
+        LEFT JOIN sys_dept d ON d.id = ud.dept_id AND d.delete_flag = 'Used'
+        WHERE u.delete_flag = 'Used'
+        AND u.id = #{userId}
     </select>
 
 </mapper>

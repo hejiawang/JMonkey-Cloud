@@ -35,4 +35,5 @@ public interface SysUserMapper extends BaseMapper<SysUserEntity> {
      */
     List<UserDto> selectAll();
 
+    UserDto findDtoById(@Param("userId")String userId);
 }

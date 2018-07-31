@@ -15,4 +15,34 @@
         <result column="delete_flag" property="deleteFlag" />
     </resultMap>
 
+    <resultMap id="c" type="com.wang.jmonkey.cloud.modules.upms.model.entity.SysDeptEntity">
+        <id column="id" property="id" />
+        <result column="parent_id" property="parentId" />
+        <result column="name" property="name" />
+        <result column="code" property="code" />
+        <result column="sort" property="sort" />
+        <result column="create_date" property="createDate" />
+        <result column="create_by" property="createBy" />
+        <result column="update_date" property="updateDate" />
+        <result column="update_by" property="updateBy" />
+        <result column="remark" property="remark" />
+        <result column="delete_flag" property="deleteFlag" />
+    </resultMap>
+
+    <delete id="deleteAllByUserId">
+        DELETE FROM sys_user_dept WHERE user_id = #{userId}
+    </delete>
+
+    <delete id="deleteAllByDeptId">
+        DELETE FROM sys_user_dept WHERE dept_id = #{deptId}
+    </delete>
+
+    <select id="findDeptByUserId" resultMap="findDeptByUserId">
+        SELECT d.*
+        FROM sys_user_dept ud
+        LEFT JOIN sys_dept d ON ud.dept_id = d.id AND d.delete_flag = 'Used'
+        WHERE ud.delete_flag = 'Used'
+        AND ud.user_id = #{userId}
+    </select>
+
 </mapper>

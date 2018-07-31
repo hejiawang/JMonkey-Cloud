@@ -8,9 +8,12 @@ import com.wang.jmonkey.cloud.modules.upms.model.dto.DeptDto;
 import com.wang.jmonkey.cloud.modules.upms.model.dto.DeptTreeDto;
 import com.wang.jmonkey.cloud.modules.upms.model.entity.SysDeptEntity;
 import com.wang.jmonkey.cloud.modules.upms.service.ISysDeptService;
+import com.wang.jmonkey.cloud.modules.upms.service.ISysUserDeptService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
 import java.io.Serializable;
 import java.util.List;
 
@@ -27,6 +30,9 @@ public class SysDeptServiceImpl extends ServiceImpl<SysDeptMapper, SysDeptEntity
      */
     @Autowired
     private SysDeptMapper deptMapper;
+
+    @Resource
+    private ISysUserDeptService userDeptService;
 
     /**
      * 获取树形部门信息数据
@@ -50,5 +56,17 @@ public class SysDeptServiceImpl extends ServiceImpl<SysDeptMapper, SysDeptEntity
     @Override
     public DeptDto selectDtoById(Serializable id) {
         return deptMapper.selectDtoById(id);
+    }
+
+    /**
+     * 删除部门
+     * @param id 部门ID
+     * @return
+     */
+    @Override
+    @Transactional
+    public boolean deleteById(Serializable id) {
+        userDeptService.deleteAllByDeptId(String.valueOf(id));
+        return super.deleteById(id);
     }
 }

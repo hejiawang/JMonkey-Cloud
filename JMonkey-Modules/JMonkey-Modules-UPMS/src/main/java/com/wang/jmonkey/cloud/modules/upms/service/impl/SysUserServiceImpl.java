@@ -13,6 +13,7 @@ import com.wang.jmonkey.cloud.modules.upms.model.dto.UserDto;
 import com.wang.jmonkey.cloud.modules.upms.model.dto.UserInfo;
 import com.wang.jmonkey.cloud.modules.upms.model.entity.SysUserEntity;
 import com.wang.jmonkey.cloud.modules.upms.service.ISysRoleMenuService;
+import com.wang.jmonkey.cloud.modules.upms.service.ISysUserDeptService;
 import com.wang.jmonkey.cloud.modules.upms.service.ISysUserRoleService;
 import com.wang.jmonkey.cloud.modules.upms.service.ISysUserService;
 import com.xiaoleilu.hutool.collection.CollectionUtil;
@@ -43,6 +44,9 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUserEntity
     private SysUserMapper userMapper;
 
     @Resource
+    private ISysUserDeptService userDeptService;
+
+    @Resource
     private ISysUserRoleService userRoleService;
 
     @Resource
@@ -61,7 +65,8 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUserEntity
         SysUserEntity userEntity = UserDto.converToEntity(userDto);
         super.updateById(userEntity);
 
-        return userRoleService.saveRoles(userEntity.getId(), userDto.getRoleIdList());
+        return userRoleService.saveRoles(userEntity.getId(), userDto.getRoleIdList())&&
+                userDeptService.saveDepts(userEntity.getId(), userDto.getDeptIdList());
     }
 
     /**
@@ -77,7 +82,8 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUserEntity
         userEntity.setPassword(password);
         super.insert(userEntity);
 
-        return userRoleService.saveRoles(userEntity.getId(), userDto.getRoleIdList());
+        return userRoleService.saveRoles(userEntity.getId(), userDto.getRoleIdList()) &&
+                userDeptService.saveDepts(userEntity.getId(), userDto.getDeptIdList());
     }
 
     /**
@@ -112,7 +118,9 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUserEntity
 
         List<SysUserEntity> userEntityList = userPage.getRecords();
         userEntityList.forEach( user -> {
-            UserDto userDto = UserDto.converFromEntity(user).setRoleList(userRoleService.findRoleByUserId(user.getId()));
+            UserDto userDto = UserDto.converFromEntity(user)
+                    .setRoleList(userRoleService.findRoleByUserId(user.getId()))
+                    .setDeptList(userDeptService.findDeptByUserId(user.getId()));
             userDtoList.add(userDto);
         });
 
@@ -139,6 +147,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUserEntity
     @Transactional
     public boolean deleteById(Serializable id) {
         userRoleService.deleteAllByUserId(String.valueOf(id));
+        userDeptService.deleteAllByUserId(String.valueOf(id));
         return super.deleteById(id);
     }
 
@@ -149,10 +158,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUserEntity
      */
     @Override
     public UserDto findDtoById(String id) {
-        SysUserEntity userEntity = this.selectById(id);
-        List<String> roleIdList = userRoleService.findRoleIdByUserId(id);
-
-        return UserDto.converFromEntity(userEntity).setRoleIdList(roleIdList);
+        return userMapper.findDtoById(id);
     }
 
     /**
@@ -212,8 +218,6 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUserEntity
         return new UserInfo().setUser(this.findByUsername(userVo.getUsername()))
                 .setRoleCodeList(roleCodeList).setPermissionList(permissionList);
     }
-
-
 
     private List<String> infoRoleCode( UserVo userVo ){
         List<String> roleCodeList = new ArrayList<>();
