@@ -33,6 +33,6 @@ public class SysRoleMenuEntity extends BaseEntity<SysRoleMenuEntity> {
 
     @Override
     protected Serializable pkVal() {
-        return this.roleId;
+        return this.roleId + this.menuId;
     }
 }

@@ -15,7 +15,7 @@
         <result column="delete_flag" property="deleteFlag" />
     </resultMap>
 
-    <resultMap id="c" type="com.wang.jmonkey.cloud.modules.upms.model.entity.SysDeptEntity">
+    <resultMap id="DeptResultMap" type="com.wang.jmonkey.cloud.modules.upms.model.entity.SysDeptEntity">
         <id column="id" property="id" />
         <result column="parent_id" property="parentId" />
         <result column="name" property="name" />
@@ -37,7 +37,7 @@
         DELETE FROM sys_user_dept WHERE dept_id = #{deptId}
     </delete>
 
-    <select id="findDeptByUserId" resultMap="findDeptByUserId">
+    <select id="findDeptByUserId" resultMap="DeptResultMap">
         SELECT d.*
         FROM sys_user_dept ud
         LEFT JOIN sys_dept d ON ud.dept_id = d.id AND d.delete_flag = 'Used'

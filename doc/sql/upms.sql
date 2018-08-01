@@ -108,3 +108,33 @@ CREATE TABLE `sys_user_dept` (
   PRIMARY KEY (`user_id`,`dept_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='用户部门表';
 
+
+DROP TABLE IF EXISTS `sys_dict_type`;
+CREATE TABLE `sys_dict_type` (
+  `id` varchar(64) COLLATE utf8mb4_bin NOT NULL COMMENT '主键ID',
+  `type` varchar(64) COLLATE utf8mb4_bin NOT NULL COMMENT '字典类型',
+  `create_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `create_by` varchar(64) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '创建人',
+  `update_date` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
+  `update_by` varchar(64) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '修改人',
+  `remark` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '备注',
+  `delete_flag` varchar(10) COLLATE utf8mb4_bin DEFAULT 'Used' COMMENT 'used启用 disable禁用 delete删除',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin ROW_FORMAT=DYNAMIC COMMENT='字典类型';
+
+DROP TABLE IF EXISTS `sys_dict_value`;
+CREATE TABLE `sys_dict_value` (
+  `id` varchar(64) COLLATE utf8mb4_bin NOT NULL COMMENT '主键ID',
+  `type_id` varchar(64) COLLATE utf8mb4_bin NOT NULL COMMENT '字典类型ID',
+  `lable` varchar(64) COLLATE utf8mb4_bin NOT NULL COMMENT '字典标签',
+  `value` varchar(64) COLLATE utf8mb4_bin NOT NULL COMMENT '字典键值',
+  `sort` int(11) DEFAULT NULL COMMENT '排序值',
+  `create_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `create_by` varchar(64) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '创建人',
+  `update_date` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
+  `update_by` varchar(64) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '修改人',
+  `remark` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '备注',
+  `delete_flag` varchar(10) COLLATE utf8mb4_bin DEFAULT 'Used' COMMENT 'used启用 disable禁用 delete删除',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin ROW_FORMAT=DYNAMIC COMMENT='字典值';
+

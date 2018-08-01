@@ -33,6 +33,6 @@ public class SysUserRoleEntity extends BaseEntity<SysUserRoleEntity> {
 
     @Override
     protected Serializable pkVal() {
-        return this.userId;
+        return this.userId + this.roleId;
     }
 }
