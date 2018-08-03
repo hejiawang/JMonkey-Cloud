@@ -5,10 +5,15 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.wang.jmonkey.cloud.modules.upms.mapper.SysDictTypeMapper;
+import com.wang.jmonkey.cloud.modules.upms.mapper.SysDictValueMapper;
 import com.wang.jmonkey.cloud.modules.upms.model.entity.SysDictTypeEntity;
+import com.wang.jmonkey.cloud.modules.upms.model.entity.SysDictValueEntity;
 import com.wang.jmonkey.cloud.modules.upms.service.ISysDictTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.io.Serializable;
 
 /**
  * @Description: 字典类型 ServiceImpl
@@ -20,6 +25,9 @@ public class SysDictTypeServiceImpl extends ServiceImpl<SysDictTypeMapper, SysDi
 
     @Autowired
     private SysDictTypeMapper dictTypeMapper;
+
+    @Autowired
+    private SysDictValueMapper dictValueMapper;
 
     /**
      * 获取字典类型分页数据
@@ -35,6 +43,21 @@ public class SysDictTypeServiceImpl extends ServiceImpl<SysDictTypeMapper, SysDi
         wrapper.orderBy( "create_date", false );
 
         return this.selectPage(page, wrapper);
+    }
+
+    /**
+     * 删除字典类型与该字典类型的字典值
+     * @param id 字典类型ID
+     * @return
+     */
+    @Transactional
+    @Override
+    public boolean deleteById(Serializable id) {
+        EntityWrapper<SysDictValueEntity> wrapper = new EntityWrapper<>();
+        wrapper.setEntity(new SysDictValueEntity().setTypeId(String.valueOf(id)));
+        dictValueMapper.delete(wrapper);
+
+        return super.deleteById(id);
     }
 
     /**
