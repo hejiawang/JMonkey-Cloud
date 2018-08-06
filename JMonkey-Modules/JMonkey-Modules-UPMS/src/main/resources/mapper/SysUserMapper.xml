@@ -30,6 +30,12 @@
     </resultMap>
 
     <resultMap id="UserDTOResultMap" type="com.wang.jmonkey.cloud.modules.upms.model.dto.UserDto" extends="BaseResultMap">
+        <collection property="roleIdList" ofType="java.lang.String">
+            <result column="role_id" />
+        </collection>
+        <collection property="deptIdList" ofType="java.lang.String">
+            <result column="dept_id" />
+        </collection>
         <collection property="roleList" ofType="com.wang.jmonkey.cloud.modules.upms.model.entity.SysRoleEntity">
             <id column="role_id" property="id" />
             <result column="role_name" property="name" />

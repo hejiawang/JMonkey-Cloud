@@ -51,7 +51,7 @@ public class SysMenuApi extends BaseHttp {
      * @return
      */
     @PutMapping(value = "/modify")
-    public HttpResult<Boolean> modify( @RequestBody @Validated SysMenuEntity menuEntity ){
+    public HttpResult<Boolean> modify( @RequestBody SysMenuEntity menuEntity ){
         return new HttpResult<>( sysMenuService.modifyById(menuEntity) );
     }
 
