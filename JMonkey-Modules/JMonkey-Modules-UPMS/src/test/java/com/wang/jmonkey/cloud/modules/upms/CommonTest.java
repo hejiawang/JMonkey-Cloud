@@ -5,6 +5,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +17,11 @@ import java.util.List;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 public class CommonTest {
+
+    @Test
+    public void timeTest(){
+        System.out.println(LocalDateTime.now());
+    }
 
     @Test
     public void strTest(){
