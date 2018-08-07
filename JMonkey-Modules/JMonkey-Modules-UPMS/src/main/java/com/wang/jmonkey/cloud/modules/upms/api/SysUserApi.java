@@ -10,6 +10,7 @@ import com.wang.jmonkey.cloud.common.utils.file.FtpFileUtil;
 import com.wang.jmonkey.cloud.modules.upms.model.dto.UserDto;
 import com.wang.jmonkey.cloud.modules.upms.model.dto.UserInfo;
 import com.wang.jmonkey.cloud.modules.upms.model.entity.SysUserEntity;
+import com.wang.jmonkey.cloud.modules.upms.model.param.UserSearchParam;
 import com.wang.jmonkey.cloud.modules.upms.service.ISysUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -43,12 +44,12 @@ public class SysUserApi extends BaseHttp {
     /**
      * 用户信息列表
      * @param page
-     * @param userEntity
+     * @param userSearchParam
      * @return
      */
     @GetMapping(value = "/list")
-    public HttpPageResult<UserDto> list(Page<SysUserEntity> page, SysUserEntity userEntity) {
-        return new HttpPageResult<>( sysUserService.selectPage( page, userEntity ) );
+    public HttpPageResult<UserDto> list(Page<SysUserEntity> page, UserSearchParam userSearchParam) {
+        return new HttpPageResult<>( sysUserService.selectPage( page, userSearchParam ) );
     }
 
     /**

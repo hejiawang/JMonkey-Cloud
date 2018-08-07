@@ -1,6 +1,5 @@
 package com.wang.jmonkey.cloud.modules.upms.service.impl;
 
-import com.baomidou.mybatisplus.enums.SqlLike;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
@@ -12,6 +11,7 @@ import com.wang.jmonkey.cloud.modules.upms.mapper.SysUserMapper;
 import com.wang.jmonkey.cloud.modules.upms.model.dto.UserDto;
 import com.wang.jmonkey.cloud.modules.upms.model.dto.UserInfo;
 import com.wang.jmonkey.cloud.modules.upms.model.entity.SysUserEntity;
+import com.wang.jmonkey.cloud.modules.upms.model.param.UserSearchParam;
 import com.wang.jmonkey.cloud.modules.upms.service.ISysRoleMenuService;
 import com.wang.jmonkey.cloud.modules.upms.service.ISysUserDeptService;
 import com.wang.jmonkey.cloud.modules.upms.service.ISysUserRoleService;
@@ -101,31 +101,22 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUserEntity
     /**
      * 分页查询用户列表数据
      * @param page page
-     * @param userEntity 用户信息
+     * @param userSearchParam 用户信息
      * @return 用户分页信息
      */
     @Override
-    public Page<UserDto> selectPage(Page<SysUserEntity> page, SysUserEntity userEntity){
-        EntityWrapper<SysUserEntity> userWrapper = new EntityWrapper<>(new SysUserEntity());
-        userWrapper.like("username", userEntity.getUsername(), SqlLike.DEFAULT)
-                .like("phone", userEntity.getPhone(), SqlLike.DEFAULT)
-                .orderBy( "create_date", false );
-        return this.converPage(this.selectPage(page, userWrapper));
-    }
+    public Page<UserDto> selectPage(Page<SysUserEntity> page, UserSearchParam userSearchParam){
+        int current = page.getCurrent(),size = page.getSize();
 
-    private Page<UserDto> converPage( Page<SysUserEntity> userPage ){
-        List<UserDto> userDtoList = new ArrayList<>();
-
-        List<SysUserEntity> userEntityList = userPage.getRecords();
-        userEntityList.forEach( user -> {
-            UserDto userDto = UserDto.converFromEntity(user)
-                    .setRoleList(userRoleService.findRoleByUserId(user.getId()))
-                    .setDeptList(userDeptService.findDeptByUserId(user.getId()));
-            userDtoList.add(userDto);
-        });
+        List<UserDto> userDtoList = userMapper.selectPageData(userSearchParam);
+        int start = size * ( current - 1 ) > userDtoList.size() ? userDtoList.size() : size * ( current - 1 ),
+                end = size * current > userDtoList.size() ? userDtoList.size() : size * current;
 
         Page<UserDto> userDtoPage = new Page<>();
-        userDtoPage.setRecords(userDtoList).setTotal(userPage.getTotal()).setCurrent(userPage.getCurrent()).setSize(userPage.getSize());
+        userDtoPage.setRecords(userDtoList.subList(start, end))
+                .setTotal(userDtoList.size())
+                .setCurrent(page.getCurrent()).setSize(page.getSize());
+
         return userDtoPage;
     }
 

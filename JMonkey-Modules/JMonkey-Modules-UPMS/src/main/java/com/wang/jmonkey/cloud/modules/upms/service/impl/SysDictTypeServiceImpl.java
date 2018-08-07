@@ -40,6 +40,7 @@ public class SysDictTypeServiceImpl extends ServiceImpl<SysDictTypeMapper, SysDi
         EntityWrapper<SysDictTypeEntity> wrapper = new EntityWrapper<>();
         wrapper.setEntity(new SysDictTypeEntity());
         wrapper.like("type", dictTypeEntity.getType(), SqlLike.DEFAULT);
+        wrapper.like("remark", dictTypeEntity.getRemark(), SqlLike.DEFAULT);
         wrapper.orderBy( "create_date", false );
 
         return this.selectPage(page, wrapper);

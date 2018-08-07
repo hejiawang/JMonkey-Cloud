@@ -96,4 +96,27 @@
         AND u.id = #{userId}
     </select>
 
+    <select id="selectPageData" resultMap="UserDTOResultMap">
+        SELECT
+            u.*,
+            r.id AS role_id, r.name AS role_name, r.code AS role_code,
+            d.id AS dept_id, d.name AS dept_name, d.code AS dept_code
+        FROM sys_user u
+        LEFT JOIN sys_user_role ur ON ur.user_id = u.id AND ur.delete_flag = 'Used'
+        LEFT JOIN sys_role r ON r.id = ur.role_id AND r.delete_flag = 'Used'
+        LEFT JOIN sys_user_dept ud ON ud.user_id = u.id AND ud.delete_flag = 'Used'
+        LEFT JOIN sys_dept d ON d.id = ud.dept_id AND d.delete_flag = 'Used'
+        WHERE u.delete_flag = 'Used'
+        <if test=" username != '' and username != null">
+            AND u.username like '%${username}%'
+        </if>
+        <if test=" roleId != '' and roleId != null">
+            AND ur.role_id = #{roleId}
+        </if>
+        <if test=" deptId != '' and deptId != null">
+            AND ud.dept_id = #{deptId}
+        </if>
+        ORDER BY create_date DESC
+    </select>
+
 </mapper>
