@@ -10,6 +10,7 @@ import com.wang.jmonkey.cloud.modules.upms.model.entity.SysDictTypeEntity;
 import com.wang.jmonkey.cloud.modules.upms.model.entity.SysDictValueEntity;
 import com.wang.jmonkey.cloud.modules.upms.service.ISysDictTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -47,10 +48,33 @@ public class SysDictTypeServiceImpl extends ServiceImpl<SysDictTypeMapper, SysDi
     }
 
     /**
+     * 新增字典类型
+     * @param entity
+     * @return
+     */
+    @CacheEvict(value = "sys_dict", allEntries = true)
+    @Override
+    public boolean insert(SysDictTypeEntity entity) {
+        return super.insert(entity);
+    }
+
+    /**
+     * 修改字典类型
+     * @param entity
+     * @return
+     */
+    @CacheEvict(value = "sys_dict", allEntries = true)
+    @Override
+    public boolean updateById(SysDictTypeEntity entity) {
+        return super.updateById(entity);
+    }
+
+    /**
      * 删除字典类型与该字典类型的字典值
      * @param id 字典类型ID
      * @return
      */
+    @CacheEvict(value = "sys_dict", allEntries = true)
     @Transactional
     @Override
     public boolean deleteById(Serializable id) {

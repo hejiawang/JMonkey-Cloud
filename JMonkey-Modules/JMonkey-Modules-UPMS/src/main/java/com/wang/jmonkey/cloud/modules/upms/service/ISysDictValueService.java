@@ -18,4 +18,11 @@ public interface ISysDictValueService extends IService<SysDictValueEntity> {
      * @return
      */
     List<SysDictValueEntity> selectList(SysDictValueEntity dictValueEntity);
+
+    /**
+     * 根据字典类型获取该类型的字典值
+     * @param type 字典类型
+     * @return
+     */
+    List<SysDictValueEntity> findDictValueByType(String type);
 }

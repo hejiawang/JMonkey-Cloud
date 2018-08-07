@@ -72,4 +72,14 @@ public class SysDictValueApi extends BaseHttp {
     public HttpResult<SysDictValueEntity> findById(@PathVariable Serializable id ){
         return new HttpResult<>(dictValueService.selectById(id));
     }
+
+    /**
+     * 根据字典类型获取该类型的字典值
+     * @param type 字典类型
+     * @return
+     */
+    @GetMapping(value = "/findValue/{type}")
+    public HttpResult<List<SysDictValueEntity>> findDictValueByType( @PathVariable String type ){
+        return new HttpResult<>(dictValueService.findDictValueByType(type));
+    }
 }

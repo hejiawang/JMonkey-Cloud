@@ -15,4 +15,12 @@
         <result column="delete_flag" property="deleteFlag" />
     </resultMap>
 
+    <select id="findDictValueByType" resultMap="BaseResultMap">
+        SELECT v.*
+        FROM sys_dict_value v
+        LEFT JOIN sys_dict_type t ON t.id = v.type_id AND t.delete_flag = 'Used'
+        WHERE v.delete_flag = 'Used'
+        AND t.type = #{type}
+    </select>
+
 </mapper>
