@@ -10,3 +10,4 @@ JMonkey:
         port: 6379
         database: 15
     baseUrl: /jmonkey
+    fileTempMemory: D://fileTempMemory

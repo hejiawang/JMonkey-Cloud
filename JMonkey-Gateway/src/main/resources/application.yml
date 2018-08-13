@@ -62,4 +62,5 @@ JMonkey:
             - /jmonkey/auth/**
             - /jmonkey/upms/code/**
             - /jmonkey/upms/user/info
+            - /jmonkey/upms/user/uploadPhoto
             - /jmonkey/upms/menu/userMenu
